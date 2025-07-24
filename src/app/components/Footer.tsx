@@ -10,7 +10,7 @@ export default function Footer() {
           © {new Date().getFullYear()} TECNOVITA. Todos los derechos reservados.
         </p>
         <p className="text-xs mt-2">
-          Diseñado y desarrollado con Next.js, TypeScript y Tailwind CSS.
+          {/*Diseñado y desarrollado con Next.js, TypeScript y Tailwind CSS.*/}
         </p>
         <div className="mt-4 flex justify-center space-x-4">
           <Link href="https://wa.me/542954294429" target="_blank" rel="noopener noreferrer" aria-label="Envíanos un mensaje por WhatsApp">
