@@ -19,13 +19,9 @@ const subServicesContent = {
     title: 'Servicios de ELECTRICIDAD',
     items: [
       'Instalaciones eléctricas residenciales y comerciales',
-      'Mantenimiento preventivo y correctivo',
       'Reparación de averías y cortocircuitos',
-      'Actualización y adecuación de instalaciones a normativa',
-      'Montaje de cuadros eléctricos',
+      'Actualización y adecuación de instalaciones a normativa vigente',
       'Instalación de iluminación LED y sistemas de ahorro energético',
-      'Certificaciones eléctricas (DCI)',
-      'Asesoramiento en eficiencia energética',
     ],
   },
   telefonia: {
@@ -35,7 +31,6 @@ const subServicesContent = {
       'Implementación de telefonía IP (VoIP)',
       'Mantenimiento de sistemas telefónicos',
       'Cableado estructurado para voz y datos',
-      'Sistemas de comunicación unificada',
       'Configuración de extensiones y líneas telefónicas',
       'Asesoramiento en soluciones de comunicación',
     ],
