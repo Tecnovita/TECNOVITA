@@ -5,10 +5,10 @@ const subServicesContent = {
   informatica: {
     title: 'Servicios de INFORMÁTICA',
     items: [
-      'Reparación y mantenimiento de PCs y Laptops',
+      'Diagnóstico, reparación y optimización de PCs y Dispositivos Portátiles',
       'Instalación y configuración de redes (cableadas y Wi-Fi)',
       'Soporte técnico remoto y presencial',
-      'Instalación y actualización de sistemas operativos y software',
+      'Instalación, configuración y actualización de Sistemas Operativos y Aplicaciones',
       'Configuración de equipos y periféricos',
       'Soluciones de seguridad informática (antivirus, firewall)',
       'Recuperación de datos',

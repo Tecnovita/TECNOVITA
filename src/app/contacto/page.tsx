@@ -214,7 +214,7 @@ export default function ContactoPage() {
             <div className="space-y-4 text-gray-700">
               <p className="flex items-center">
                 <PhoneIcon className="h-6 w-6 text-blue-500 mr-3 flex-shrink-0" />
-                <a href="tel:+5491112345678" className="hover:underline">+54 9 11 1234 5678</a>
+                <a href="tel:+5492954294429" className="hover:underline">+54 9 2954 294429</a>
               </p>
               <p className="flex items-center">
                 <EnvelopeIcon className="h-6 w-6 text-blue-500 mr-3 flex-shrink-0" />
