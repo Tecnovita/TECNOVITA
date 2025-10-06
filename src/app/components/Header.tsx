@@ -18,7 +18,7 @@ export default function Header() {
             alt="Logo de TECNOVITA"
             width={500}
             height={200}
-            className="h-full w-auto object-contain m-0 p-0"
+            className="h-40 w-auto object-contain m-0 p-0"
             priority
           />
         </Link>
