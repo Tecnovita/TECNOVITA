@@ -9,8 +9,8 @@ export default function Home() {
         ¡Bienvenido a TECNOVITA!
       </h1>
       <p className="text-xs sm:text-sm md:text-base text-gray-700 max-w-xl mb-2">
-        <span className="block">Servicios y Soporte Técnico en INFORMATICA, TELEFONIA y ELECTRICIDAD.</span>
-        <span className="block mt-1">Mantenemos en óptimo rendimiento tus equipos, redes y sistemas.</span>
+        <span className="block">Servicios técnicos en Informática, Telefonía y Electricidad.</span>
+        <span className="block mt-1">Soluciones rápidas y confiables para tu hogar o empresa.</span>
       </p>
       {/*
         // MODIFICACIÓN:
