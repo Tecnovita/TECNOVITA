@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
-import Footer from "./components/Footer"; // Importa el Footer
+import Footer from "./components/Footer";
+import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +32,22 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <Header />
-        <main className="flex-grow"> {/* Agrega flex-grow para que el contenido ocupe el espacio restante */}
+        <main className="flex-grow mt-[14rem]">
           {children}
         </main>
-        <Footer /> {/* Agrega el Footer aquí */}
+
+        {/* Botón flotante WhatsApp solo visible en móvil */}
+        <div className="fixed bottom-4 right-4 z-50 md:hidden">
+          <Link
+            href="https://wa.me/542954294429"
+            target="_blank"
+            aria-label="WhatsApp"
+          >
+            <FaWhatsapp className="text-4xl text-green-500 hover:text-green-400 transition-transform duration-300 hover:scale-110" />
+          </Link>
+        </div>
+
+        <Footer />
       </body>
     </html>
   );
