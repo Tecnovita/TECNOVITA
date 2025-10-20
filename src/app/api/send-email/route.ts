@@ -1,52 +1,65 @@
-// src/app/api/send-email/route.ts
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export async function POST(request: Request) {
-  try {
-    const formData = await request.json();
+  if (request.method !== 'POST') {
+    return NextResponse.json({ message: 'Método no permitido' }, { status: 405 });
+  }
 
-    // Validar que los datos mínimos estén presentes
-    if (!formData.nombre || !formData.email || !formData.mensaje) {
-      return NextResponse.json({ message: 'Faltan campos obligatorios: nombre, email o mensaje.' }, { status: 400 });
+  try {
+    const contentType = request.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      return NextResponse.json({ message: 'Tipo de contenido inválido. Se requiere JSON.' }, { status: 415 });
     }
 
-    // Configurar el transporter de Nodemailer
-    // Usaremos variables de entorno para la seguridad.
+    const formData = await request.json();
+
+    const nombre = formData.nombre?.trim();
+    const email = formData.email?.trim();
+    const mensaje = formData.mensaje?.trim();
+    const telefono = formData.telefono?.trim() || 'No proporcionado';
+    const servicio = formData.servicioInteresado?.trim() || 'No especificado';
+
+    if (!nombre || !email || !mensaje) {
+      return NextResponse.json(
+        { message: 'Faltan campos obligatorios: nombre, email o mensaje.' },
+        { status: 400 }
+      );
+    }
+
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST, // Por ejemplo: 'smtp.gmail.com' o tu servidor SMTP
-      port: Number(process.env.EMAIL_PORT), // Por ejemplo: 465 para SSL o 587 para TLS
-      secure: process.env.EMAIL_SECURE === 'true', // true para 465, false para otros puertos como 587
+      host: process.env.EMAIL_HOST,
+      port: Number(process.env.EMAIL_PORT),
+      secure: process.env.EMAIL_SECURE === 'true',
       auth: {
-        user: process.env.EMAIL_USER, // Tu dirección de correo electrónico
-        pass: process.env.EMAIL_PASS, // Tu contraseña o contraseña de aplicación
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    // Contenido del correo electrónico
     const mailOptions = {
-      from: process.env.EMAIL_FROM, // Puede ser el mismo que EMAIL_USER o un alias
-      to: process.env.EMAIL_TO,     // El correo al que se enviarán los mensajes (ej: tu@empresa.com)
-      subject: `Consulta de ${formData.nombre} - ${formData.servicioInteresado || 'Sin servicio especificado'}`,
+      from: process.env.EMAIL_FROM,
+      to: process.env.EMAIL_TO,
+      replyTo: email, // ✅ Permite responder directamente al usuario
+      subject: `Consulta de ${nombre} - ${servicio}`,
       html: `
-        <p><strong>Nombre:</strong> ${formData.nombre}</p>
-        <p><strong>Email:</strong> ${formData.email}</p>
-        <p><strong>Teléfono:</strong> ${formData.telefono || 'No proporcionado'}</p>
-        <p><strong>Servicio de interés:</strong> ${formData.servicioInteresado || 'No especificado'}</p>
+        <p><strong>Nombre:</strong> ${nombre}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Teléfono:</strong> ${telefono}</p>
+        <p><strong>Servicio de interés:</strong> ${servicio}</p>
         <h3>Mensaje:</h3>
-        <p>${formData.mensaje}</p>
+        <p>${mensaje}</p>
       `,
     };
 
-    // Enviar el correo
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ message: 'Correo enviado con éxito' }, { status: 200 });
-
   } catch (error) {
-    console.error('Error al procesar la solicitud de correo:', error);
-    // Para depuración, puedes enviar el mensaje de error completo.
-    // En producción, es mejor enviar un mensaje genérico.
-    return NextResponse.json({ message: 'Error interno del servidor al enviar el correo.', error: (error as Error).message }, { status: 500 });
+    console.error('Error al enviar el correo:', error);
+    return NextResponse.json(
+      { message: 'Error interno del servidor al enviar el correo.' },
+      { status: 500 }
+    );
   }
 }

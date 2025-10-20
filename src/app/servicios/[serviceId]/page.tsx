@@ -1,11 +1,10 @@
-// src/app/servicios/[serviceId]/page.tsx
 import Link from 'next/link';
 
 const subServicesContent = {
   informatica: {
     title: 'Servicios de INFORMÁTICA',
     items: [
-      'Diagnóstico, reparación y optimización de PCs y Dispositivos Portátiles',
+      'Diagnóstico, reparación y optimización de PCs y Notebooks',
       'Instalación y configuración de redes (cableadas y Wi-Fi)',
       'Soporte técnico remoto y presencial',
       'Instalación, configuración y actualización de Sistemas Operativos y Aplicaciones',
@@ -38,32 +37,26 @@ const subServicesContent = {
 } as const;
 
 type ServiceId = keyof typeof subServicesContent;
-
 type PageParams = { serviceId: string };
-type SearchParams = { [key: string]: string | string[] | undefined };
 
-// 👇 Nota: tipamos params y searchParams como *Promise* porque el checker de Next 15 los modela así.
-export default async function ServiceDetailPage({
+export default function ServiceDetailPage({
   params,
-  searchParams,
 }: {
-  params: Promise<PageParams>;
-  searchParams?: Promise<SearchParams>;
+  params: PageParams;
 }) {
-  const { serviceId } = await params; // await funciona incluso si Next te pasa un objeto plain
-
+  const { serviceId } = params;
   const serviceDetail = subServicesContent[serviceId as ServiceId];
 
   if (!serviceDetail) {
     return (
       <main className="flex flex-col items-center justify-center min-h-screen py-8 px-4 bg-gray-50 text-center">
-        <h1 className="text-4xl font-bold text-red-600 mb-4">Servicio No Encontrado</h1>
-        <p className="text-lg text-gray-700">
+        <h1 className="text-4xl font-bold text-red-600 mb-4 tracking-tight">Servicio No Encontrado</h1>
+        <p className="text-lg text-gray-700 leading-snug font-light">
           Lo sentimos, el servicio que buscas no está disponible.
         </p>
         <Link
           href="/servicios"
-          className="mt-6 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
+          className="mt-6 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-base font-medium"
         >
           Volver a Servicios
         </Link>
@@ -74,21 +67,25 @@ export default async function ServiceDetailPage({
   return (
     <main className="flex flex-col items-center py-8 px-4 bg-gray-50 min-h-screen sm:py-12 md:py-16">
       <div className="max-w-4xl w-full text-center">
-        <h1 className="text-3xl font-bold text-blue-700 mb-4 sm:text-4xl md:text-5xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-700 mb-4 tracking-tight animate-slide-up">
           {serviceDetail.title}
         </h1>
-        <p className="text-md text-gray-700 mb-8 sm:text-lg">
+
+        <div className="w-full h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 my-6 rounded-full animate-fade-in" />
+
+        <p className="text-md sm:text-lg text-gray-700 mb-8 leading-snug font-light animate-slide-up">
           Descubre a continuación los sub-servicios detallados que ofrecemos en esta área.
         </p>
 
         <div className="bg-white p-6 rounded-lg shadow-lg text-left">
-          <ul className="list-disc list-inside space-y-3 text-gray-800 text-base sm:text-lg">
+          <ul className="list-disc list-inside space-y-3 text-gray-800 text-base sm:text-lg leading-relaxed">
             {serviceDetail.items.map((item, index) => (
               <li key={index} className="flex items-start">
                 <svg
                   className="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
+                  aria-hidden="true"
                 >
                   <path
                     fillRule="evenodd"
@@ -105,13 +102,13 @@ export default async function ServiceDetailPage({
         <div className="mt-8 flex justify-center gap-4">
           <Link
             href="/servicios"
-            className="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition-colors duration-300"
+            className="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition-transform duration-300 hover:scale-105 text-base font-medium"
           >
             Volver a Servicios
           </Link>
           <Link
-          href="/contacto"
-          className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
+            href="/contacto"
+            className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-transform duration-300 hover:scale-105 text-base font-medium"
           >
             Solicitar Presupuesto
           </Link>
@@ -121,9 +118,6 @@ export default async function ServiceDetailPage({
   );
 }
 
-// Opcional: SSG de rutas válidas
 export function generateStaticParams() {
   return Object.keys(subServicesContent).map((serviceId) => ({ serviceId }));
 }
-
-
