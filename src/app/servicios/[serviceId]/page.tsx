@@ -37,15 +37,17 @@ const subServicesContent = {
 } as const;
 
 type ServiceId = keyof typeof subServicesContent;
-type PageParams = { serviceId: string };
 
-export default function ServiceDetailPage({
+export function generateStaticParams() {
+  return Object.keys(subServicesContent).map((serviceId) => ({ serviceId }));
+}
+
+export default async function ServiceDetailPage({
   params,
 }: {
-  params: PageParams;
+  params: { serviceId: string };
 }) {
-  const { serviceId } = params;
-  const serviceDetail = subServicesContent[serviceId as ServiceId];
+  const serviceDetail = subServicesContent[params.serviceId as ServiceId];
 
   if (!serviceDetail) {
     return (
@@ -116,8 +118,4 @@ export default function ServiceDetailPage({
       </div>
     </main>
   );
-}
-
-export function generateStaticParams() {
-  return Object.keys(subServicesContent).map((serviceId) => ({ serviceId }));
 }

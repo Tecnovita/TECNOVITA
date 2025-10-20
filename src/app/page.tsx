@@ -33,13 +33,12 @@ export default function Home() {
         </p>
       </section>
 
-      <Link href="/servicios" passHref>
-        <button
-          aria-label="Ver servicios disponibles"
-          className="mt-4 px-6 py-3 bg-blue-500 text-white text-base font-medium rounded-lg shadow-md hover:bg-blue-600 transition-transform duration-300 hover:scale-105"
-        >
-          Ver Servicios
-        </button>
+      <Link
+        href="/servicios"
+        aria-label="Ver servicios disponibles"
+        className="mt-4 px-6 py-3 bg-blue-500 text-white text-base font-medium rounded-lg shadow-md hover:bg-blue-600 transition-transform duration-300 hover:scale-105 inline-block"
+      >
+        Ver Servicios
       </Link>
     </main>
   );
