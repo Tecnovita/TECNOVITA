@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* === Variables y Temas === */
+
+/* Variables base para el tema claro (por defecto) */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -9,6 +12,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Sobreescribe variables para el tema oscuro (si el sistema lo prefiere) */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -16,6 +20,9 @@
   }
 }
 
+/* === Estilos Globales === */
+
+/* Reset global y aplicación de variables de tema/fuentes */
 html, body {
   margin: 0;
   padding: 0;
@@ -25,35 +32,22 @@ html, body {
   line-height: 1.6;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* === Animaciones Personalizadas === */
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
 }
+.animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
 
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-}
+
+/* === Componentes Reutilizables de Tailwind === */
 
 @layer components {
   .button-transition {
@@ -63,16 +57,17 @@ html, body {
   .icon-transition {
     @apply transition-transform duration-300 ease-out hover:scale-110;
   }
-}
 
-.shadow-premium {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
+  /* Clases personalizadas que usan CSS normal */
+  .shadow-premium {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
 
-.text-gradient {
-  background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  .text-gradient {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
 }

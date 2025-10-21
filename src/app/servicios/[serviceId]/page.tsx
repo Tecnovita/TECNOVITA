@@ -1,54 +1,62 @@
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import type { Metadata } from "next";
 
 const subServicesContent = {
   informatica: {
-    title: 'Servicios de INFORMÁTICA',
+    title: "Servicios de INFORMÁTICA",
     items: [
-      'Diagnóstico, reparación y optimización de PCs y Notebooks',
-      'Instalación y configuración de redes (cableadas y Wi-Fi)',
-      'Soporte técnico remoto y presencial',
-      'Instalación, configuración y actualización de Sistemas Operativos y Aplicaciones',
-      'Configuración de equipos y periféricos',
-      'Soluciones de seguridad informática (antivirus, firewall)',
-      'Recuperación de datos',
-      'Asesoramiento tecnológico personalizado',
+      "Diagnóstico, reparación y optimización de PCs y Notebooks",
+      "Instalación y configuración de redes (cableadas y Wi-Fi)",
+      "Soporte técnico remoto y presencial",
+      "Instalación, configuración y actualización de Sistemas Operativos y Aplicaciones",
+      "Configuración de equipos y periféricos",
+      "Soluciones de seguridad informática (antivirus, firewall)",
+      "Recuperación de datos",
+      "Asesoramiento tecnológico personalizado",
     ],
   },
   electricidad: {
-    title: 'Servicios de ELECTRICIDAD',
+    title: "Servicios de ELECTRICIDAD",
     items: [
-      'Instalaciones eléctricas residenciales y comerciales',
-      'Reparación de averías y cortocircuitos',
-      'Actualización y adecuación de instalaciones a normativa vigente',
-      'Instalación de iluminación LED y sistemas de ahorro energético',
+      "Instalaciones eléctricas residenciales y comerciales",
+      "Reparación de averías y cortocircuitos",
+      "Actualización y adecuación de instalaciones a normativa vigente",
+      "Instalación de iluminación LED y sistemas de ahorro energético",
     ],
   },
   telefonia: {
-    title: 'Servicios de TELEFONÍA',
+    title: "Servicios de TELEFONÍA",
     items: [
-      'Instalación y configuración de centrales telefónicas (PBX)',
-      'Implementación de telefonía IP (VoIP)',
-      'Mantenimiento de sistemas telefónicos',
-      'Cableado estructurado para voz y datos',
-      'Configuración de extensiones y líneas telefónicas',
-      'Asesoramiento en soluciones de comunicación',
+      "Instalación y configuración de centrales telefónicas (PBX)",
+      "Implementación de telefonía IP (VoIP)",
+      "Mantenimiento de sistemas telefónicos",
+      "Cableado estructurado para voz y datos",
+      "Configuración de extensiones y líneas telefónicas",
+      "Asesoramiento en soluciones de comunicación",
     ],
   },
 } as const;
 
+// Derivamos ServiceId directamente del objeto
 type ServiceId = keyof typeof subServicesContent;
 
-export function generateStaticParams() {
-  return Object.keys(subServicesContent).map((serviceId) => ({ serviceId }));
+export function generateStaticParams(): { serviceId: ServiceId }[] {
+  return Object.keys(subServicesContent).map((serviceId) => ({
+    serviceId: serviceId as ServiceId,
+  }));
 }
 
+// ✅ CAMBIO: params ahora es Promise y la función es async
 export default async function Page({
   params,
 }: {
-  params: { serviceId: string };
+  params: Promise<{ serviceId: ServiceId }>;
 }) {
-  const serviceDetail = subServicesContent[params.serviceId as ServiceId];
+  // ✅ CAMBIO: Usamos await para acceder a params
+  const { serviceId } = await params;
+  const serviceDetail = subServicesContent[serviceId];
+  
   if (!serviceDetail) return notFound();
 
   return (
@@ -103,4 +111,19 @@ export default async function Page({
       </div>
     </main>
   );
+}
+
+// ✅ CAMBIO: params es Promise y la función es async
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ serviceId: ServiceId }>;
+}): Promise<Metadata> {
+  // ✅ CAMBIO: Usamos await para acceder a params
+  const { serviceId } = await params;
+  const serviceDetail = subServicesContent[serviceId];
+  
+  return {
+    title: serviceDetail ? serviceDetail.title : "Servicio no encontrado",
+  };
 }

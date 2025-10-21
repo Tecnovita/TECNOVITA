@@ -1,15 +1,18 @@
-import type { Config } from 'tailwindcss'
-import forms from '@tailwindcss/forms'
-import typography from '@tailwindcss/typography'
-import aspectRatio from '@tailwindcss/aspect-ratio'
+import type { Config } from "tailwindcss";
+import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
+import aspectRatio from "@tailwindcss/aspect-ratio";
 
 const config: Config = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./app/**/*.{js,ts,jsx,tsx}"
+    // Asegura que globals.css se escanee, lo cual ayuda al linter de VS Code
+    "./src/app/globals.css", 
+    "./src/app/**/*.{js,ts,jsx,tsx,html}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,html}",
+    "./src/components/**/*.{js,ts,jsx,tsx,html}",
+    "./src/**/*.{js,ts,jsx,tsx,html}" 
   ],
+  darkMode: "media",
   theme: {
     extend: {
       colors: {
@@ -18,11 +21,12 @@ const config: Config = {
         accent: "#22D3EE"
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui"]
+        sans: ["var(--font-geist-sans)", "Inter", "ui-sans-serif", "system-ui"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "SFMono-Regular"]
       }
     }
   },
   plugins: [forms, typography, aspectRatio]
-}
+};
 
-export default config
+export default config;
