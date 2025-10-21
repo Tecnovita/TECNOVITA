@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
 const subServicesContent = {
@@ -42,29 +43,13 @@ export function generateStaticParams() {
   return Object.keys(subServicesContent).map((serviceId) => ({ serviceId }));
 }
 
-export default async function ServiceDetailPage({
+export default async function Page({
   params,
 }: {
   params: { serviceId: string };
 }) {
   const serviceDetail = subServicesContent[params.serviceId as ServiceId];
-
-  if (!serviceDetail) {
-    return (
-      <main className="flex flex-col items-center justify-center min-h-screen py-8 px-4 bg-gray-50 text-center">
-        <h1 className="text-4xl font-bold text-red-600 mb-4 tracking-tight">Servicio No Encontrado</h1>
-        <p className="text-lg text-gray-700 leading-snug font-light">
-          Lo sentimos, el servicio que buscas no está disponible.
-        </p>
-        <Link
-          href="/servicios"
-          className="mt-6 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-base font-medium"
-        >
-          Volver a Servicios
-        </Link>
-      </main>
-    );
-  }
+  if (!serviceDetail) return notFound();
 
   return (
     <main className="flex flex-col items-center py-8 px-4 bg-gray-50 min-h-screen sm:py-12 md:py-16">

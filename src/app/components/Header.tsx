@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image'; // ✅ nuevo import
 import { useState } from 'react';
 import { FaWhatsapp, FaInstagram, FaFacebookF, FaTiktok } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
@@ -19,10 +20,13 @@ export default function Header() {
             className="flex items-center m-0 p-0 transition-transform duration-300 hover:scale-105"
             aria-label="Ir a la página de inicio"
           >
-            <img
-              src="/logo.png"
+            <Image
+              src="/logo.svg"
               alt="Logo de TECNOVITA"
+              width={200} // ✅ reemplaza el tamaño equivalente
+              height={200}
               className="h-24 md:h-52 w-auto object-contain"
+              priority
             />
           </Link>
         </div>
@@ -34,9 +38,15 @@ export default function Header() {
             aria-label="Navegación principal"
             className="hidden md:flex space-x-8 text-lg font-semibold"
           >
-            <Link href="/" className="hover:text-gray-300 transition-colors duration-300">Inicio</Link>
-            <Link href="/servicios" className="hover:text-gray-300 transition-colors duration-300">Servicios</Link>
-            <Link href="/contacto" className="hover:text-gray-300 transition-colors duration-300">Contacto</Link>
+            <Link href="/" className="hover:text-gray-300 transition-colors duration-300">
+              Inicio
+            </Link>
+            <Link href="/servicios" className="hover:text-gray-300 transition-colors duration-300">
+              Servicios
+            </Link>
+            <Link href="/contacto" className="hover:text-gray-300 transition-colors duration-300">
+              Contacto
+            </Link>
           </nav>
 
           {/* Botón hamburguesa */}
@@ -58,9 +68,15 @@ export default function Header() {
             className="md:hidden bg-gray-900 py-2 mt-2 space-y-2 text-center w-full transition-all duration-300"
             aria-label="Menú móvil"
           >
-            <Link href="/" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>Inicio</Link>
-            <Link href="/servicios" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>Servicios</Link>
-            <Link href="/contacto" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>Contacto</Link>
+            <Link href="/" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>
+              Inicio
+            </Link>
+            <Link href="/servicios" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>
+              Servicios
+            </Link>
+            <Link href="/contacto" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>
+              Contacto
+            </Link>
           </nav>
         )}
 
