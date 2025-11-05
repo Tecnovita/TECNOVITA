@@ -41,9 +41,6 @@ export default function Header() {
             <Link href="/" className="hover:text-gray-300 transition-colors duration-300">
               Inicio
             </Link>
-            <Link href="/servicios" className="hover:text-gray-300 transition-colors duration-300">
-              Servicios
-            </Link>
             <Link href="/contacto" className="hover:text-gray-300 transition-colors duration-300">
               Contacto
             </Link>
@@ -70,9 +67,6 @@ export default function Header() {
           >
             <Link href="/" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>
               Inicio
-            </Link>
-            <Link href="/servicios" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>
-              Servicios
             </Link>
             <Link href="/contacto" className="block px-4 py-2 hover:bg-gray-800" onClick={toggleMenu}>
               Contacto

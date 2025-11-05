@@ -33,13 +33,29 @@ export default function Home() {
         </p>
       </section>
 
-      <Link
-        href="/servicios"
-        aria-label="Ver servicios disponibles"
-        className="mt-4 px-6 py-3 bg-blue-500 text-white text-base font-medium rounded-lg shadow-md hover:bg-blue-600 transition-transform duration-300 hover:scale-105 inline-block"
-      >
-        Ver Servicios
-      </Link>
+      <section
+  aria-label="Opciones de servicios"
+  className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-xl mt-4 animate-slide-up"
+>
+  <Link
+    href="/servicios/informatica"
+    className="px-6 py-4 bg-blue-500 text-white text-base font-medium rounded-lg shadow-md hover:bg-blue-600 transition-transform duration-300 hover:scale-105 text-center"
+  >
+    Informática
+  </Link>
+  <Link
+    href="/servicios/telefonia"
+    className="px-6 py-4 bg-blue-500 text-white text-base font-medium rounded-lg shadow-md hover:bg-blue-600 transition-transform duration-300 hover:scale-105 text-center"
+  >
+    Telefonía
+  </Link>
+  <Link
+    href="/servicios/electricidad"
+    className="px-6 py-4 bg-blue-500 text-white text-base font-medium rounded-lg shadow-md hover:bg-blue-600 transition-transform duration-300 hover:scale-105 text-center"
+  >
+    Electricidad
+  </Link>
+</section>
     </main>
   );
 }

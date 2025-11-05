@@ -96,10 +96,10 @@ export default async function Page({
 
         <div className="mt-8 flex justify-center gap-4">
           <Link
-            href="/servicios"
+            href="/ "
             className="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition-transform duration-300 hover:scale-105 text-base font-medium"
           >
-            Volver a Servicios
+            Volver
           </Link>
           <Link
             href="/contacto"
