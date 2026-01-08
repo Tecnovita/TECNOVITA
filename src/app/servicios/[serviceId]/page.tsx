@@ -1,129 +1,132 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import type { Metadata } from "next";
+// ======================================================
+// IMPORTS
+// ======================================================
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { MotionDiv } from '@/components/motion-div';
+import ServiceCardList from '@/components/ServiceCardList';
 
-const subServicesContent = {
-  informatica: {
-    title: "Servicios de INFORMÁTICA",
-    items: [
-      "Diagnóstico, reparación y optimización de PCs y Notebooks",
-      "Instalación y configuración de redes (cableadas y Wi-Fi)",
-      "Soporte técnico remoto y presencial",
-      "Instalación, configuración y actualización de Sistemas Operativos y Aplicaciones",
-      "Configuración de equipos y periféricos",
-      "Soluciones de seguridad informática (antivirus, firewall)",
-      "Recuperación de datos",
-      "Asesoramiento tecnológico personalizado",
-    ],
-  },
-  electricidad: {
-    title: "Servicios de ELECTRICIDAD",
-    items: [
-      "Instalaciones eléctricas residenciales y comerciales",
-      "Reparación de averías y cortocircuitos",
-      "Actualización y adecuación de instalaciones a normativa vigente",
-      "Instalación de iluminación LED y sistemas de ahorro energético",
-    ],
-  },
-  telefonia: {
-    title: "Servicios de TELEFONÍA",
-    items: [
-      "Instalación y configuración de centrales telefónicas (PBX)",
-      "Implementación de telefonía IP (VoIP)",
-      "Mantenimiento de sistemas telefónicos",
-      "Cableado estructurado para voz y datos",
-      "Configuración de extensiones y líneas telefónicas",
-      "Asesoramiento en soluciones de comunicación",
-    ],
-  },
-} as const;
+// Importamos la fuente de datos centralizada
+import {
+  subServicesContent,
+  type ServiceId,
+  type ServiceItem,
+} from '@/lib/services';
 
-// Derivamos ServiceId directamente del objeto
-type ServiceId = keyof typeof subServicesContent;
+// ======================================================
+// CONSTANTES
+// ======================================================
+const PHONE_WHATSAPP = '542954294429';
 
-export function generateStaticParams(): { serviceId: ServiceId }[] {
-  return Object.keys(subServicesContent).map((serviceId) => ({
-    serviceId: serviceId as ServiceId,
+type PageProps = {
+  params: {
+    serviceId: ServiceId;
+  };
+};
+
+// ======================================================
+// GENERACIÓN DE RUTAS ESTÁTICAS (AUTOMATIZADA)
+// ======================================================
+export function generateStaticParams(): { serviceId: string }[] {
+  // Sincronización: Extrae las llaves directamente de subServicesContent
+  // Si un servicio no está en el archivo de datos, no se generará su ruta.
+  return Object.keys(subServicesContent).map((id) => ({
+    serviceId: id,
   }));
 }
 
-// ✅ CAMBIO: params ahora es Promise y la función es async
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ serviceId: ServiceId }>;
-}) {
-  // ✅ CAMBIO: Usamos await para acceder a params
-  const { serviceId } = await params;
-  const serviceDetail = subServicesContent[serviceId];
-  
+// ======================================================
+// PÁGINA PRINCIPAL
+// ======================================================
+export default async function Page({ params }: PageProps) {
+  const { serviceId } = params;
+
+  // Busca el detalle en el archivo central usando el ID de la URL
+  const serviceDetail = subServicesContent[serviceId as ServiceId];
+
+  // Si el servicio fue eliminado o no existe -> 404 automático
   if (!serviceDetail) return notFound();
 
+  const itemsWithWhatsapp = serviceDetail.items.map(
+    (it: ServiceItem) => ({
+      ...it,
+      whatsappUrl: `https://wa.me/${PHONE_WHATSAPP}?text=${encodeURIComponent(
+        `Hola, quisiera información sobre "${serviceDetail.title}" - ${it.label} (ID: ${it.id}).`
+      )}`,
+    })
+  );
+
   return (
-    <main className="flex flex-col items-center py-8 px-4 bg-gray-50 min-h-screen sm:py-12 md:py-16">
-      <div className="max-w-4xl w-full text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-700 mb-4 tracking-tight animate-slide-up">
+    <MotionDiv
+      animate={{ opacity: 1, y: 0 }}
+      className="mx-auto max-w-4xl rounded-xl bg-gradient-to-br from-white to-blue-50/30 py-4 px-4 shadow-lg border border-blue-100 sm:py-6 sm:px-6"
+      initial={{ opacity: 0, y: 12 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* ENCABEZADO */}
+      <header
+        className="mb-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 px-5 py-3 text-center shadow-sm border-l-4 border-tecnovita"
+        role="banner"
+      >
+        <h1 className="text-xl font-bold tracking-tight text-tecnovita sm:text-2xl">
           {serviceDetail.title}
         </h1>
+      </header>
 
-        <div className="w-full h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 my-6 rounded-full animate-fade-in" />
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent mb-3" />
 
-        <p className="text-md sm:text-lg text-gray-700 mb-8 leading-snug font-light animate-slide-up">
-          Descubre a continuación los sub-servicios detallados que ofrecemos en esta área.
-        </p>
+      {/* LISTA DE SERVICIOS */}
+      <section
+        aria-labelledby="service-list"
+        className="w-full"
+      >
+        <ServiceCardList items={itemsWithWhatsapp} />
+      </section>
 
-        <div className="bg-white p-6 rounded-lg shadow-lg text-left">
-          <ul className="list-disc list-inside space-y-3 text-gray-800 text-base sm:text-lg leading-relaxed">
-            {serviceDetail.items.map((item, index) => (
-              <li key={index} className="flex items-start">
-                <svg
-                  className="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* NAVEGACIÓN */}
+      <nav
+        className="mt-4 flex flex-col justify-center gap-2.5 sm:flex-row pt-3 border-t border-blue-100"
+        role="navigation"
+      >
+        <Link
+          aria-label="Volver al inicio"
+          className="rounded-lg bg-gray-200 hover:bg-gray-300 px-6 py-2.5 text-sm font-medium text-gray-800 transition-all duration-200 hover:shadow-md"
+          href="/"
+        >
+          ← Volver
+        </Link>
 
-        <div className="mt-8 flex justify-center gap-4">
-          <Link
-            href="/ "
-            className="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition-transform duration-300 hover:scale-105 text-base font-medium"
-          >
-            Volver
-          </Link>
-          <Link
-            href="/contacto"
-            className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-transform duration-300 hover:scale-105 text-base font-medium"
-          >
-            Solicitar Presupuesto
-          </Link>
-        </div>
-      </div>
-    </main>
+        <Link
+          aria-label="Solicitar presupuesto"
+          className="rounded-lg bg-gradient-to-r from-tecnovita to-tecnovita-dark hover:from-tecnovita-dark hover:to-tecnovita px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:shadow-md hover:scale-105"
+          href="/contacto"
+        >
+          💬 Solicitar Presupuesto
+        </Link>
+      </nav>
+    </MotionDiv>
   );
 }
 
-// ✅ CAMBIO: params es Promise y la función es async
+// ======================================================
+// METADATA DINÁMICA (AUTOMATIZADA)
+// ======================================================
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ serviceId: ServiceId }>;
-}): Promise<Metadata> {
-  // ✅ CAMBIO: Usamos await para acceder a params
-  const { serviceId } = await params;
-  const serviceDetail = subServicesContent[serviceId];
-  
+}: PageProps): Promise<Metadata> {
+  const { serviceId } = params;
+  const serviceDetail = subServicesContent[serviceId as ServiceId];
+
+  if (!serviceDetail) {
+    return {
+      title: 'Servicio no encontrado',
+      description: 'La página solicitada no existe.',
+    };
+  }
+
   return {
-    title: serviceDetail ? serviceDetail.title : "Servicio no encontrado",
+    title: serviceDetail.title,
+    description: `${serviceDetail.title} — Soluciones profesionales para tu hogar o empresa.`,
   };
 }

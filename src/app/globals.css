@@ -1,73 +1,157 @@
+/* === "C:\01-TECNOVITA\tecnovita1\src\app\globals.css" === */
+/* === Inyección de estilos de Tailwind CSS === */
+/* Estas directivas inyectan las capas base, componentes y utilidades de Tailwind CSS. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* === Variables y Temas === */
-
-/* Variables base para el tema claro (por defecto) */
+/* === Variables y Temas Corporativos Tecnovita === */
+/* Define variables CSS en el pseudo-elemento :root para temas claro y oscuro. */
 :root {
+  /* Colores corporativos definidos aquí. */
+  /* Se corresponden con los definidos en tailwind.config.ts. */
+  --primary: #004080;
+  --primary-light: #1E589B;
+  --primary-dark: #003060;
+  --tecnovita: #0078FF;
+  --tecnovita-light: #3399FF;
+  --tecnovita-dark: #005FCC;
+  --whatsapp: #25D366;
+
+  /* Tema claro: colores de fondo, texto y bordes. */
   --background: #ffffff;
   --foreground: #171717;
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+
+  /* Fuentes: Variables CSS para fuentes personalizadas definidas en tailwind.config.ts. */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-/* Sobreescribe variables para el tema oscuro (si el sistema lo prefiere) */
+/* === Tema Oscuro === */
+/* Sobreescribe las variables del tema claro si el usuario prefiere el modo oscuro. */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #f5f5f5;
+    --muted: #1f2937;
+    --muted-foreground: #9ca3af;
+    --border: #374151;
   }
 }
 
-/* === Estilos Globales === */
-
-/* Reset global y aplicación de variables de tema/fuentes */
-html, body {
+/* === Estilos Globales Mejorados === */
+/* Aplica estilos base al elemento html y body. */
+html,
+body {
+  /* Elimina márgenes y relleno predeterminados. */
   margin: 0;
   padding: 0;
+  /* Usa las variables CSS para el color de fondo y texto. */
   background: var(--background);
   color: var(--foreground);
+  /* Define la fuente principal usando la variable CSS y fuentes genéricas como respaldo. */
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  /* Establece el interlineado. */
   line-height: 1.6;
+  /* Habilita el desplazamiento suave. */
+  scroll-behavior: smooth;
+  /* Opcional: Prioriza la velocidad de renderizado del texto. */
+  /* Considera cambiar a 'optimizeLegibility' si la legibilidad es más importante. */
+  text-rendering: optimizeSpeed; /* Puedes eliminar esta línea para usar el valor predeterminado */
+  /* Opcional: Establece una altura mínima del 100% de la ventana gráfica. */
+  /* Puede causar problemas en móviles; considera aplicarla en el contenedor raíz de la app. */
+  min-height: 100vh;
 }
 
-/* === Animaciones Personalizadas === */
-
+/* === Animaciones Premium === */
+/* Define animaciones personalizadas usando @keyframes. */
 @keyframes fadeIn {
+  /* Comienza con opacidad 0 y desplazado hacia abajo. */
   from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  /* Termina con opacidad 1 y en su posición original. */
+  to { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
 
 @keyframes slideUp {
   from { transform: translateY(20px); opacity: 0; }
-  to   { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(0); opacity: 1; }
 }
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-gentle {
+  /* Pulsa suavemente entre opacidad 1 y 0.8. */
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Crea clases CSS para aplicar las animaciones definidas. */
+.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
 .animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
+.animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
+.animate-pulse-gentle { animation: pulse-gentle 2s ease-in-out infinite; }
 
+/* === Accesibilidad: Preferencia de usuario de reducir movimientos === */
+/* Si el usuario ha indicado que prefiere reducir movimientos, desactiva animaciones y transiciones. */
+@media (prefers-reduced-motion: reduce) {
+  /* Aplica la regla a todos los elementos. */
+  * {
+    /* Establece la duración de la animación a un valor muy corto. */
+    animation-duration: 0.01ms !important;
+    /* Limita la iteración de la animación a una sola vez. */
+    animation-iteration-count: 1 !important;
+    /* Establece la duración de la transición a un valor muy corto. */
+    transition-duration: 0.01ms !important;
+  }
+}
 
-/* === Componentes Reutilizables de Tailwind === */
-
+/* === Componentes Corporativos Tecnovita === */
+/* Agrupa estilos reutilizables como componentes usando @layer components de Tailwind. */
 @layer components {
-  .button-transition {
-    @apply transition-transform duration-300 ease-out hover:scale-105;
+  /* Estilo para botones primarios de Tecnovita. */
+  .btn-tecnovita {
+    /* Aplica estilos usando utilidades de Tailwind. */
+    @apply bg-tecnovita hover:bg-tecnovita-dark text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-tecnovita focus:ring-offset-2;
   }
 
-  .icon-transition {
-    @apply transition-transform duration-300 ease-out hover:scale-110;
+  /* Estilo para botones de contorno de Tecnovita. */
+  .btn-tecnovita-outline {
+    @apply border-2 border-tecnovita text-tecnovita hover:bg-tecnovita hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-out;
   }
 
-  /* Clases personalizadas que usan CSS normal */
-  .shadow-premium {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  /* Estilo para tarjetas premium. */
+  .card-premium {
+    @apply bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 transition-all duration-300 hover:shadow-xl;
   }
 
-  .text-gradient {
-    background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
+  /* Estilo para gradientes de fondo de Tecnovita. */
+  .gradient-tecnovita {
+    background: linear-gradient(135deg, var(--tecnovita) 0%, var(--primary) 100%);
+  }
+
+  /* Estilo para texto con gradiente de Tecnovita. */
+  .text-gradient-tecnovita {
+    background: linear-gradient(135deg, var(--tecnovita) 0%, var(--primary) 100%);
+    /* Recorta el texto para que muestre solo el gradiente como color. */
     -webkit-background-clip: text;
     background-clip: text;
+    /* Hace que el color del texto sea transparente para mostrar el gradiente. */
     -webkit-text-fill-color: transparent;
-    color: transparent;
+  }
+
+  /* Utilidad para transiciones suaves. */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* Utilidad para sombras premium. */
+  .shadow-premium {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 }

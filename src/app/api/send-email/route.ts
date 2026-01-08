@@ -1,6 +1,6 @@
+//"C:\01-TECNOVITA\tecnovita1\src\app\api\send-email\route.ts"
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-
 export async function POST(request: Request) {
   if (request.method !== 'POST') {
     return NextResponse.json({ message: 'Método no permitido' }, { status: 405 });
@@ -9,7 +9,10 @@ export async function POST(request: Request) {
   try {
     const contentType = request.headers.get('content-type');
     if (!contentType?.includes('application/json')) {
-      return NextResponse.json({ message: 'Tipo de contenido inválido. Se requiere JSON.' }, { status: 415 });
+      return NextResponse.json(
+        { message: 'Tipo de contenido inválido. Se requiere JSON.' },
+        { status: 415 }
+      );
     }
 
     const formData = await request.json();

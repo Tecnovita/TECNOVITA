@@ -1,28 +1,124 @@
+//"C:\01-TECNOVITA\tecnovita1\tsconfig.json"
 {
+  // "compilerOptions": Contiene todas las configuraciones para el compilador de TypeScript.
   "compilerOptions": {
-    "target": "ES2020",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    // --- Configuración Básica ---
+    // "target": Define la versión de ECMAScript objetivo para el código JavaScript generado.
+    // ES2022 permite usar características modernas de JavaScript.
+    "target": "ES2022",
+    // "lib": Especifica qué archivos de definición de tipos estándar (librerías) se incluyen.
+    // 'DOM' y 'DOM.Iterable' son necesarios para aplicaciones web.
+    // 'ES2022' incluye tipos para características modernas de JavaScript.
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    // "allowJs": Si true, permite importar y usar archivos .js dentro del proyecto.
+    // Se establece en false porque este es un proyecto TypeScript puro.
     "allowJs": false,
+    // "skipLibCheck": Si true, omite la verificación de tipos en archivos .d.ts.
+    // Acelera la compilación y es seguro en la mayoría de los casos.
     "skipLibCheck": true,
+
+    // --- Verificación de Tipos ---
+    // "strict": Habilita todas las verificaciones de tipo estrictas (recomendado).
+    // Es una opción fundamental para prevenir errores comunes.
     "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    // "noUncheckedIndexedAccess": Si true, los elementos accedidos por índice (arr[0]) 
+    // pueden ser 'undefined' incluso si el array tiene elementos.
+    // Obliga a verificar explícitamente si el índice existe, aumentando la seguridad de tipos.
+    "noUncheckedIndexedAccess": true,
+    // "exactOptionalPropertyTypes": Si true, los tipos de propiedades opcionales son más estrictos.
+    // Por ejemplo, una propiedad `prop?: string` solo puede ser `string` o `undefined`, no `string | undefined`.
+    "exactOptionalPropertyTypes": true,
+    // "noImplicitReturns": Si true, requiere que todas las rutas de código en una función tengan un valor de retorno explícito.
+    "noImplicitReturns": true,
+    // "noFallthroughCasesInSwitch": Si true, reporta error si un 'case' en un 'switch' no tiene 'break'.
+    "noFallthroughCasesInSwitch": true,
+    // "forceConsistentCasingInFileNames": Si true, TypeScript verificará que los nombres de archivos 
+    // se importen con la misma capitalización que en el disco.
+    "forceConsistentCasingInFileNames": true,
+
+    // --- Módulos ---
+    // "module": Define el sistema de módulos para el código emitido.
+    // 'ESNext' es el estándar moderno para módulos JavaScript.
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
+    // "moduleResolution": Define cómo se resuelven los módulos importados.
+    // 'bundler' es el estándar moderno, compatible con Next.js y otros bundlers modernos.
+    "moduleResolution": "bundler",
+    // "allowImportingTsExtensions": Si true, permite importar archivos con extensión .ts/.tsx directamente.
+    // Útil para herramientas como Vitest o otros runners de pruebas que pueden leer .ts directamente.
+    "allowImportingTsExtensions": true,
+    // "verbatimModuleSyntax": Si true, mantiene la sintaxis de import/export tal cual en el archivo emitido.
+    // Es una opción experimental que puede ser útil para mantener consistencia con herramientas externas.
+    "verbatimModuleSyntax": true,
+
+    // --- Salida y Emisión ---
+    // "noEmit": Si true, el compilador no emite archivos JavaScript, solo verifica tipos.
+    // Correcto para Next.js, ya que Next.js maneja la compilación y emisión.
+    "noEmit": true,
+    // "isolatedModules": Si true, cada archivo debe ser un módulo para que sea compatible con transpiladores como Babel.
+    // Es una buena práctica para proyectos que pueden usar transpiladores.
     "isolatedModules": true,
-    "jsx": "preserve",
+    // "incremental": Si true, habilita la compilación incremental para mejorar el rendimiento en proyectos grandes.
     "incremental": true,
+    // "tsBuildInfoFile": Especifica el archivo donde TypeScript almacena la información de compilación incremental.
+    // Next.js puede usar su propia caché, pero apuntar aquí ayuda a mantener la coherencia.
+    "tsBuildInfoFile": ".next/cache/tsconfig.tsbuildinfo",
+
+    // --- Interoperabilidad ---
+    // "esModuleInterop": Si true, genera código adicional para facilitar la interoperabilidad con módulos CommonJS/AMD/UMD.
+    "esModuleInterop": true,
+    // "resolveJsonModule": Si true, permite importar archivos .json como módulos.
+    "resolveJsonModule": true,
+
+    // --- JSX ---
+    // "jsx": Define cómo se maneja la transformación de JSX.
+    // 'preserve' mantiene el JSX como está (lo transforma Next.js).
+    "jsx": "preserve",
+
+    // --- Mapeo de Rutas ---
+    // "baseUrl": Establece la base para resolver rutas relativas. './' significa la carpeta raíz del proyecto.
     "baseUrl": "./",
+    // "paths": Define alias para rutas de importación, simplificando imports largos.
     "paths": {
-      "@/*": ["src/*"]
+      // Alias genérico para la carpeta 'src'
+      "@/*": ["src/*"],
+      // Alias específicos para carpetas comunes
+      "@/components/*": ["src/components/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/types/*": ["src/types/*"],
+      "@/lib/*": ["src/lib/*"]
     },
+
+    // --- Plugins ---
+    // "plugins": Lista de plugins para el compilador de TypeScript.
+    // El plugin 'next' es crucial para Next.js: habilita la generación automática de tipos y mejora la IDE experience.
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  // "include": Lista de patrones de archivos que deben incluirse para la verificación de tipos.
+  "include": [
+    // Archivo generado por Next.js para tipos de entorno
+    "next-env.d.ts",
+    // Todos los archivos .ts y .tsx en cualquier subcarpeta
+    "**/*.ts",
+    "**/*.tsx",
+    // Tipos generados por Next.js (importantísimo incluirlo si usas el plugin 'next')
+    ".next/types/**/*.ts",
+    // Archivos de pruebas
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/__tests__/**/*"
+  ],
+  // "exclude": Lista de patrones de archivos que deben excluirse de la verificación de tipos.
+  "exclude": [
+    // Carpetas comunes que no deben verificarse
+    "node_modules",
+    "dist", // Carpeta de build
+    "build", // Otra carpeta de build común
+    ".next", // Carpeta de Next.js (aunque .next/types/**/*.ts se incluye explícitamente)
+    "coverage", // Carpeta de cobertura de pruebas
+    "**/*.js" // Excluir archivos JS si el proyecto es principalmente TS
+  ]
 }
