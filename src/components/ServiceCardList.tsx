@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 
-// Definimos el tipo exacto que la página está construyendo
 type ServiceItem = {
   id: string;
   label: string;
@@ -16,7 +15,11 @@ interface Props {
 
 const containerVariants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.05 } },
+  show: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
 };
 
 const itemVariants = {
@@ -48,7 +51,6 @@ export default function ServiceCardList({ items }: Props) {
 
           <div className="flex items-center">
             <a
-              aria-label={`Consultar por ${it.label}`}
               className="px-4 py-2 text-xs font-bold bg-[#25D366] text-white rounded-lg hover:bg-[#128C7E] transition-all duration-200 shadow-sm active:scale-95"
               href={it.whatsappUrl}
               rel="noopener noreferrer"

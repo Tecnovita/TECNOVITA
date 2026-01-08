@@ -16,12 +16,11 @@
     // "skipLibCheck": Si true, omite la verificación de tipos en archivos .d.ts.
     // Acelera la compilación y es seguro en la mayoría de los casos.
     "skipLibCheck": true,
-
     // --- Verificación de Tipos ---
     // "strict": Habilita todas las verificaciones de tipo estrictas (recomendado).
     // Es una opción fundamental para prevenir errores comunes.
     "strict": true,
-    // "noUncheckedIndexedAccess": Si true, los elementos accedidos por índice (arr[0]) 
+    // "noUncheckedIndexedAccess": Si true, los elementos accedidos por índice (arr[0])
     // pueden ser 'undefined' incluso si el array tiene elementos.
     // Obliga a verificar explícitamente si el índice existe, aumentando la seguridad de tipos.
     "noUncheckedIndexedAccess": true,
@@ -32,10 +31,9 @@
     "noImplicitReturns": true,
     // "noFallthroughCasesInSwitch": Si true, reporta error si un 'case' en un 'switch' no tiene 'break'.
     "noFallthroughCasesInSwitch": true,
-    // "forceConsistentCasingInFileNames": Si true, TypeScript verificará que los nombres de archivos 
+    // "forceConsistentCasingInFileNames": Si true, TypeScript verificará que los nombres de archivos
     // se importen con la misma capitalización que en el disco.
     "forceConsistentCasingInFileNames": true,
-
     // --- Módulos ---
     // "module": Define el sistema de módulos para el código emitido.
     // 'ESNext' es el estándar moderno para módulos JavaScript.
@@ -49,7 +47,6 @@
     // "verbatimModuleSyntax": Si true, mantiene la sintaxis de import/export tal cual en el archivo emitido.
     // Es una opción experimental que puede ser útil para mantener consistencia con herramientas externas.
     "verbatimModuleSyntax": true,
-
     // --- Salida y Emisión ---
     // "noEmit": Si true, el compilador no emite archivos JavaScript, solo verifica tipos.
     // Correcto para Next.js, ya que Next.js maneja la compilación y emisión.
@@ -62,18 +59,15 @@
     // "tsBuildInfoFile": Especifica el archivo donde TypeScript almacena la información de compilación incremental.
     // Next.js puede usar su propia caché, pero apuntar aquí ayuda a mantener la coherencia.
     "tsBuildInfoFile": ".next/cache/tsconfig.tsbuildinfo",
-
     // --- Interoperabilidad ---
     // "esModuleInterop": Si true, genera código adicional para facilitar la interoperabilidad con módulos CommonJS/AMD/UMD.
     "esModuleInterop": true,
     // "resolveJsonModule": Si true, permite importar archivos .json como módulos.
     "resolveJsonModule": true,
-
     // --- JSX ---
     // "jsx": Define cómo se maneja la transformación de JSX.
     // 'preserve' mantiene el JSX como está (lo transforma Next.js).
-    "jsx": "preserve",
-
+    "jsx": "react-jsx",
     // --- Mapeo de Rutas ---
     // "baseUrl": Establece la base para resolver rutas relativas. './' significa la carpeta raíz del proyecto.
     "baseUrl": "./",
@@ -87,7 +81,6 @@
       "@/types/*": ["src/types/*"],
       "@/lib/*": ["src/lib/*"]
     },
-
     // --- Plugins ---
     // "plugins": Lista de plugins para el compilador de TypeScript.
     // El plugin 'next' es crucial para Next.js: habilita la generación automática de tipos y mejora la IDE experience.
@@ -109,7 +102,8 @@
     // Archivos de pruebas
     "**/*.test.ts",
     "**/*.test.tsx",
-    "**/__tests__/**/*"
+    "**/__tests__/**/*",
+    ".next/dev/types/**/*.ts"
   ],
   // "exclude": Lista de patrones de archivos que deben excluirse de la verificación de tipos.
   "exclude": [

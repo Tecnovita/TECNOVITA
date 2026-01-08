@@ -8,11 +8,7 @@ import { MotionDiv } from '@/components/motion-div';
 import ServiceCardList from '@/components/ServiceCardList';
 
 // Importamos la fuente de datos centralizada
-import {
-  subServicesContent,
-  type ServiceId,
-  type ServiceItem,
-} from '@/lib/services';
+import { subServicesContent, type ServiceId, type ServiceItem } from '@/lib/services';
 
 // ======================================================
 // CONSTANTES
@@ -20,18 +16,16 @@ import {
 const PHONE_WHATSAPP = '542954294429';
 
 type PageProps = {
-  params: {
-    serviceId: ServiceId;
-  };
+  params: Promise<{
+    serviceId: string;
+  }>;
 };
 
 // ======================================================
-// GENERACIÓN DE RUTAS ESTÁTICAS (AUTOMATIZADA)
+// GENERACIÓN DE RUTAS ESTÁTICAS
 // ======================================================
-export function generateStaticParams(): { serviceId: string }[] {
-  // Sincronización: Extrae las llaves directamente de subServicesContent
-  // Si un servicio no está en el archivo de datos, no se generará su ruta.
-  return Object.keys(subServicesContent).map((id) => ({
+export async function generateStaticParams() {
+  return Object.keys(subServicesContent).map(id => ({
     serviceId: id,
   }));
 }
@@ -40,22 +34,22 @@ export function generateStaticParams(): { serviceId: string }[] {
 // PÁGINA PRINCIPAL
 // ======================================================
 export default async function Page({ params }: PageProps) {
-  const { serviceId } = params;
+  // Resolvemos la promesa de params para evitar el error de 'undefined'
+  const resolvedParams = await params;
+  const serviceId = resolvedParams.serviceId.toLowerCase() as ServiceId;
 
-  // Busca el detalle en el archivo central usando el ID de la URL
-  const serviceDetail = subServicesContent[serviceId as ServiceId];
+  // Busca el detalle en el archivo central
+  const serviceDetail = subServicesContent[serviceId];
 
-  // Si el servicio fue eliminado o no existe -> 404 automático
+  // Si el servicio no existe -> 404
   if (!serviceDetail) return notFound();
 
-  const itemsWithWhatsapp = serviceDetail.items.map(
-    (it: ServiceItem) => ({
-      ...it,
-      whatsappUrl: `https://wa.me/${PHONE_WHATSAPP}?text=${encodeURIComponent(
-        `Hola, quisiera información sobre "${serviceDetail.title}" - ${it.label} (ID: ${it.id}).`
-      )}`,
-    })
-  );
+  const itemsWithWhatsapp = serviceDetail.items.map((it: ServiceItem) => ({
+    ...it,
+    whatsappUrl: `https://wa.me/${PHONE_WHATSAPP}?text=${encodeURIComponent(
+      `Hola, quisiera información sobre "${serviceDetail.title}" - ${it.label} (ID: ${it.id}).`
+    )}`,
+  }));
 
   return (
     <MotionDiv
@@ -64,7 +58,7 @@ export default async function Page({ params }: PageProps) {
       initial={{ opacity: 0, y: 12 }}
       transition={{ duration: 0.3 }}
     >
-      {/* ENCABEZADO */}
+      {/* ENCABEZADO - Mantiene tus estilos originales */}
       <header
         className="mb-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 px-5 py-3 text-center shadow-sm border-l-4 border-tecnovita"
         role="banner"
@@ -77,21 +71,18 @@ export default async function Page({ params }: PageProps) {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent mb-3" />
 
       {/* LISTA DE SERVICIOS */}
-      <section
-        aria-labelledby="service-list"
-        className="w-full"
-      >
+      <section aria-labelledby="service-list" className="w-full">
         <ServiceCardList items={itemsWithWhatsapp} />
       </section>
 
-      {/* NAVEGACIÓN */}
+      {/* NAVEGACIÓN - Mantiene tus estilos originales */}
       <nav
         className="mt-4 flex flex-col justify-center gap-2.5 sm:flex-row pt-3 border-t border-blue-100"
         role="navigation"
       >
         <Link
           aria-label="Volver al inicio"
-          className="rounded-lg bg-gray-200 hover:bg-gray-300 px-6 py-2.5 text-sm font-medium text-gray-800 transition-all duration-200 hover:shadow-md"
+          className="rounded-lg bg-gray-200 hover:bg-gray-300 px-6 py-2.5 text-sm font-medium text-gray-800 transition-all duration-200 hover:shadow-md text-center"
           href="/"
         >
           ← Volver
@@ -99,7 +90,7 @@ export default async function Page({ params }: PageProps) {
 
         <Link
           aria-label="Solicitar presupuesto"
-          className="rounded-lg bg-gradient-to-r from-tecnovita to-tecnovita-dark hover:from-tecnovita-dark hover:to-tecnovita px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:shadow-md hover:scale-105"
+          className="rounded-lg bg-gradient-to-r from-tecnovita to-tecnovita-dark hover:from-tecnovita-dark hover:to-tecnovita px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:shadow-md hover:scale-105 text-center"
           href="/contacto"
         >
           💬 Solicitar Presupuesto
@@ -110,19 +101,15 @@ export default async function Page({ params }: PageProps) {
 }
 
 // ======================================================
-// METADATA DINÁMICA (AUTOMATIZADA)
+// METADATA DINÁMICA
 // ======================================================
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { serviceId } = params;
-  const serviceDetail = subServicesContent[serviceId as ServiceId];
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const serviceId = resolvedParams.serviceId.toLowerCase() as ServiceId;
+  const serviceDetail = subServicesContent[serviceId];
 
   if (!serviceDetail) {
-    return {
-      title: 'Servicio no encontrado',
-      description: 'La página solicitada no existe.',
-    };
+    return { title: 'Servicio no encontrado' };
   }
 
   return {
