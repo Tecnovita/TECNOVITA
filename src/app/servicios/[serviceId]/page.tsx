@@ -52,51 +52,53 @@ export default async function Page({ params }: PageProps) {
   }));
 
   return (
-    <MotionDiv
-      animate={{ opacity: 1, y: 0 }}
-      className="mx-auto max-w-4xl rounded-xl bg-gradient-to-br from-white to-blue-50/30 py-4 px-4 shadow-lg border border-blue-100 sm:py-6 sm:px-6"
-      initial={{ opacity: 0, y: 12 }}
-      transition={{ duration: 0.3 }}
-    >
-      {/* ENCABEZADO - Mantiene tus estilos originales */}
-      <header
-        className="mb-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100/50 px-5 py-3 text-center shadow-sm border-l-4 border-tecnovita"
-        role="banner"
+    <main className="min-h-screen bg-black py-8 px-4">
+      <MotionDiv
+        animate={{ opacity: 1, y: 0 }}
+        className="mx-auto max-w-4xl rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 py-6 px-4 shadow-2xl border border-gray-700 sm:py-8 sm:px-6"
+        initial={{ opacity: 0, y: 12 }}
+        transition={{ duration: 0.3 }}
       >
-        <h1 className="text-xl font-bold tracking-tight text-tecnovita sm:text-2xl">
-          {serviceDetail.title}
-        </h1>
-      </header>
-
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent mb-3" />
-
-      {/* LISTA DE SERVICIOS */}
-      <section aria-labelledby="service-list" className="w-full">
-        <ServiceCardList items={itemsWithWhatsapp} />
-      </section>
-
-      {/* NAVEGACIÓN - Mantiene tus estilos originales */}
-      <nav
-        className="mt-4 flex flex-col justify-center gap-2.5 sm:flex-row pt-3 border-t border-blue-100"
-        role="navigation"
-      >
-        <Link
-          aria-label="Volver al inicio"
-          className="rounded-lg bg-gray-200 hover:bg-gray-300 px-6 py-2.5 text-sm font-medium text-gray-800 transition-all duration-200 hover:shadow-md text-center"
-          href="/"
+        {/* ENCABEZADO */}
+        <header
+          className="mb-6 rounded-lg bg-gradient-to-r from-gray-800 to-gray-700 px-5 py-4 text-center shadow-lg border-l-4 border-tecnovita"
+          role="banner"
         >
-          ← Volver
-        </Link>
+          <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            {serviceDetail.title}
+          </h1>
+        </header>
 
-        <Link
-          aria-label="Solicitar presupuesto"
-          className="rounded-lg bg-gradient-to-r from-tecnovita to-tecnovita-dark hover:from-tecnovita-dark hover:to-tecnovita px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:shadow-md hover:scale-105 text-center"
-          href="/contacto"
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-tecnovita to-transparent mb-6" />
+
+        {/* LISTA DE SERVICIOS */}
+        <section aria-labelledby="service-list" className="w-full">
+          <ServiceCardList items={itemsWithWhatsapp} />
+        </section>
+
+        {/* NAVEGACIÓN */}
+        <nav
+          className="mt-6 flex flex-col justify-center gap-3 sm:flex-row pt-6 border-t border-gray-700"
+          role="navigation"
         >
-          💬 Solicitar Presupuesto
-        </Link>
-      </nav>
-    </MotionDiv>
+          <Link
+            aria-label="Volver al inicio"
+            className="rounded-lg bg-gray-700 hover:bg-gray-600 px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:shadow-lg text-center"
+            href="/"
+          >
+            ← Volver
+          </Link>
+
+          <Link
+            aria-label="Solicitar presupuesto"
+            className="rounded-lg bg-gradient-to-r from-tecnovita to-tecnovita-dark hover:from-tecnovita-dark hover:to-tecnovita px-6 py-3 text-sm font-medium text-white transition-all duration-200 hover:shadow-lg hover:scale-105 text-center"
+            href="/contacto"
+          >
+            💬 Solicitar Presupuesto
+          </Link>
+        </nav>
+      </MotionDiv>
+    </main>
   );
 }
 

@@ -5,9 +5,12 @@ import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
 export default function Footer() {
   const year = new Date().getFullYear();
 
+  // Enlace de WhatsApp unificado para reutilizar
+  const whatsappUrl = 'https://wa.me/542954294429';
+
   const socialLinks = [
     {
-      href: 'https://wa.me/542954294429',
+      href: whatsappUrl,
       icon: FaWhatsapp,
       label: 'WhatsApp',
       color: 'text-green-500 hover:text-green-400',
@@ -51,60 +54,71 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-black text-white overflow-hidden">
-      {/* fondos */}
+      {/* fondos ambientales */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
 
-      <div className="relative container mx-auto px-4 py-4">
-        <div className="flex flex-col items-center text-center space-y-2">
-
+      <div className="relative container mx-auto px-4 py-8">
+        <div className="flex flex-col items-center text-center space-y-6">
           {/* Marca */}
           <div className="relative group">
             <div className="absolute inset-0 bg-blue-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <h2 className="relative text-2xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent tracking-wide">
+            <h2 className="relative text-3xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent tracking-widest">
               TECNOVITA
             </h2>
-            <p className="text-[11px] text-gray-400 mt-0.5 font-medium">
-              Servicios Técnicos
+            <p className="text-[10px] text-gray-500 mt-1 font-bold uppercase tracking-[0.3em]">
+              Servicios Técnicos Profesionales
             </p>
           </div>
 
-          {/* Contacto */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-gray-400">
-            <a className="flex items-center gap-1 hover:text-blue-400 transition" href="tel:+542954294429">
-              <MdPhone className="text-sm" />
-              2954 29-4429
+          {/* Contacto Corregido: Teléfono ahora abre WhatsApp */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-xs text-gray-400 font-bold tracking-tight">
+            {/* ESTE ABRE WHATSAPP AHORA */}
+            <a
+              className="flex items-center gap-2 hover:text-blue-400 transition-all duration-300 group"
+              href={whatsappUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <MdPhone className="text-lg text-blue-500 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
+              <span>2954 29-4429</span>
             </a>
-            <a className="flex items-center gap-1 hover:text-blue-400 transition" href="mailto:info@tecnovita.com.ar">
-              <MdEmail className="text-sm" />
-              info@tecnovita.com.ar
+
+            <a
+              className="flex items-center gap-2 hover:text-blue-400 transition-all duration-300 group"
+              href="mailto:info@tecnovita.com.ar"
+            >
+              <MdEmail className="text-lg text-blue-500 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
+              <span>info@tecnovita.com.ar</span>
             </a>
-            <div className="flex items-center gap-1">
-              <MdLocationOn className="text-sm" />
-              Catrilo 1648, Santa Rosa, LP
-            </div>
+
+            {/* ESTE ABRE GOOGLE MAPS */}
+            <a
+              className="flex items-center gap-2 hover:text-blue-400 transition-all duration-300 group"
+              href="https://maps.google.com/?q=Catrilo+1648,+Santa+Rosa,+LP"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <MdLocationOn className="text-lg text-blue-500 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
+              <span>Catrilo 1648, Santa Rosa, LP</span>
+            </a>
           </div>
 
-          {/* Redes */}
-          <div className="w-full max-w-xs">
-            <p className="text-xs text-gray-400 mb-1.5 font-medium">
-              Síguenos en redes
-            </p>
-            <div className="flex justify-center gap-2">
-              {socialLinks.map((social) => {
+          {/* Redes Sociales con efecto Neón */}
+          <div className="w-full max-w-xs pt-4">
+            <div className="flex justify-center gap-3">
+              {socialLinks.map(social => {
                 const Icon = social.icon;
                 return (
                   <Link
                     key={social.label}
                     aria-label={social.label}
-                    className={`relative group p-2 rounded-lg bg-gray-900/50 border border-gray-800 hover:scale-110 transition ${social.hoverBg}`}
+                    className={`relative group p-3 rounded-xl bg-gray-900/50 border border-gray-800/50 hover:border-current transition-all duration-300 ${social.hoverBg}`}
                     href={social.href}
                     rel="noopener noreferrer"
                     target={social.isExternal === false ? undefined : '_blank'}
                   >
-                    <Icon
-                      className={`text-xl ${social.color} ${social.glowColor}`}
-                    />
+                    <Icon className={`text-2xl ${social.color} ${social.glowColor}`} />
                   </Link>
                 );
               })}
@@ -112,32 +126,25 @@ export default function Footer() {
           </div>
 
           {/* Separador */}
-          <div className="w-full max-w-xl h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
+          <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-          {/* Navegación */}
-          <nav className="flex gap-4 text-xs">
-            <Link className="text-gray-400 hover:text-blue-400 transition" href="/">
-              Inicio
-            </Link>
-            <Link className="text-gray-400 hover:text-blue-400 transition" href="/contacto">
-              Contacto
-            </Link>
-          </nav>
-
-          {/* Copyright */}
-          <div className="pt-1.5 border-t border-gray-900 w-full max-w-xl">
-            <p className="text-gray-500 text-[11px]">
-              © {year} <span className="text-blue-400 font-semibold">TECNOVITA</span>. Todos los derechos reservados.
-            </p>
-            <p className="text-gray-600 text-[11px] mt-0.5">
-              Diseñado con 💙 en Argentina
+          {/* Navegación y Copyright */}
+          <div className="flex flex-col items-center gap-4">
+            <nav className="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
+              <Link className="text-gray-500 hover:text-white transition-colors" href="/">
+                Inicio
+              </Link>
+              <Link className="text-gray-500 hover:text-white transition-colors" href="/contacto">
+                Contacto
+              </Link>
+            </nav>
+            <p className="text-gray-600 text-[10px] uppercase tracking-tighter">
+              © {year} <span className="text-blue-500 font-bold">TECNOVITA</span> · Todos los
+              derechos reservados
             </p>
           </div>
-
         </div>
       </div>
-
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
     </footer>
   );
 }

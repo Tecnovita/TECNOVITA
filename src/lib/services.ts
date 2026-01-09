@@ -18,8 +18,8 @@ export type ServiceItem = {
 };
 
 export type Servicio = {
-  bgGradient: string;   // Controla el color en Home y Subpáginas
-  icon: IconType;       // Icono tipado correctamente (react-icons)
+  bgGradient: string; // Controla el color en Home y Subpáginas
+  icon: IconType; // Icono tipado correctamente (react-icons)
   id: ServiceId;
   items: ServiceItem[];
   title: string;
@@ -31,58 +31,97 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     bgGradient: 'from-blue-500 to-cyan-500',
     icon: FaLaptopCode,
     id: 'informatica',
-    items: [
-      { id: 'instalar-sistema-operativo', label: 'Instalar Sistema Operativo (Windows/Linux)', note: 'Incluye drivers básicos' },
-      { id: 'instalar-office', label: 'Instalar Suite Office (Word, Excel, etc)' },
-      { id: 'instalar-antivirus', label: 'Instalación y configuración de Antivirus' },
-      { id: 'instalacion-redes', label: 'Instalación y configuración de redes Wi-Fi o cableadas', note: 'Por dispositivo' },
-      { id: 'mantenimiento-pc', label: 'Mantenimiento preventivo de PC', note: 'Limpieza física y optimización' },
-      { id: 'recuperacion-datos', label: 'Recuperación de datos', note: 'Según complejidad' },
-      { id: 'instalacion-software', label: 'Instalación de software específico', note: 'Por aplicación' },
-      { id: 'configuracion-email', label: 'Configuración de correo electrónico' },
-      { id: 'soporte-remoto', label: 'Soporte técnico remoto', note: 'Por hora' },
-      { id: 'backup-configuracion', label: 'Configuración de sistema de backup' },
-      { id: 'formateo-completo', label: 'Formateo completo y reinstalación', note: 'Con respaldo de datos' },
-      { id: 'optimizacion-rendimiento', label: 'Optimización de rendimiento del sistema' },
-    ],
     title: 'Servicios de INFORMÁTICA',
+    items: [
+      {
+        id: 'diagnostico-pc',
+        label: 'Diagnóstico técnico de PC o notebook',
+        note: 'Con presupuesto',
+      },
+      {
+        id: 'instalacion-sistema',
+        label: 'Instalación y configuración de Windows o Linux',
+        note: 'Incluye drivers',
+      },
+      {
+        id: 'formateo-backup',
+        label: 'Formateo y reinstalación completa',
+        note: 'Con respaldo de datos',
+      },
+      { id: 'instalacion-office', label: 'Instalación de Office (Word, Excel, etc.)' },
+      { id: 'virus-malware', label: 'Eliminación de virus y malware' },
+      { id: 'optimizacion-pc', label: 'Optimización de equipos lentos' },
+      {
+        id: 'mantenimiento-pc',
+        label: 'Mantenimiento preventivo',
+        note: 'Limpieza interna y pasta térmica',
+      },
+      {
+        id: 'recuperacion-datos',
+        label: 'Recuperación de archivos y datos',
+        note: 'Según complejidad',
+      },
+      { id: 'instalacion-impresoras', label: 'Instalación y configuración de impresoras' },
+      {
+        id: 'redes-wifi',
+        label: 'Instalación y configuración de redes Wi-Fi',
+        note: 'Hogar y comercio',
+      },
+      { id: 'backup', label: 'Configuración de copias de seguridad (backup)' },
+      { id: 'soporte-remoto', label: 'Soporte técnico remoto', note: 'Por hora' },
+      {
+        id: 'mantenimiento-empresas',
+        label: 'Mantenimiento informático para empresas',
+        note: 'Mensual',
+      },
+    ],
   },
 
   electricidad: {
     bgGradient: 'from-orange-500 to-red-500',
     icon: FaBolt,
     id: 'electricidad',
-    items: [
-      { id: 'instalaciones-residenciales', label: 'Instalaciones eléctricas residenciales', note: 'Precio por punto de luz' },
-      { id: 'instalaciones-comerciales', label: 'Instalaciones eléctricas comerciales', note: 'Precio por punto' },
-      { id: 'reparacion-corto', label: 'Reparación de cortocircuitos' },
-      { id: 'instalacion-luminarias', label: 'Instalación de luminarias LED', note: 'Por unidad' },
-      { id: 'tablero-electrico', label: 'Instalación/actualización de tablero eléctrico' },
-      { id: 'puesta-tierra', label: 'Instalación de puesta a tierra' },
-      { id: 'automatizacion-hogar', label: 'Automatización del hogar (domótica)', note: 'Según complejidad' },
-      { id: 'mantenimiento-electrico', label: 'Mantenimiento preventivo eléctrico' },
-      { id: 'instalacion-enchufes', label: 'Instalación de enchufes y tomacorrientes', note: 'Por unidad' },
-      { id: 'cableado-electrico', label: 'Cableado eléctrico completo', note: 'Por metro o proyecto' },
-    ],
     title: 'Servicios de ELECTRICIDAD',
+    items: [
+      { id: 'diagnostico-electrico', label: 'Diagnóstico de instalaciones eléctricas' },
+      {
+        id: 'instalaciones-residenciales',
+        label: 'Instalaciones eléctricas domiciliarias',
+        note: 'Por punto',
+      },
+      {
+        id: 'instalaciones-comerciales',
+        label: 'Instalaciones eléctricas comerciales',
+        note: 'Locales y oficinas',
+      },
+      { id: 'reparacion-cortos', label: 'Reparación de cortocircuitos y fallas' },
+      { id: 'tablero-electrico', label: 'Instalación o recambio de tablero eléctrico' },
+      { id: 'termicas-disyuntor', label: 'Instalación de térmicas y disyuntores' },
+      { id: 'puesta-tierra', label: 'Instalación de puesta a tierra reglamentaria' },
+      { id: 'luminarias-led', label: 'Instalación de luminarias LED', note: 'Interior y exterior' },
+      { id: 'ventiladores', label: 'Instalación de ventiladores de techo' },
+      { id: 'tomas-enchufes', label: 'Instalación de tomas y llaves', note: 'Por unidad' },
+      { id: 'mantenimiento-electrico', label: 'Mantenimiento eléctrico preventivo' },
+    ],
   },
 
   telefonia: {
     bgGradient: 'from-green-500 to-emerald-500',
     icon: FaPhoneAlt,
     id: 'telefonia',
+    title: 'Servicios de TELEFONÍA Y CELULARES',
     items: [
-      { id: 'pbx-instalacion', label: 'Instalación y configuración de centrales telefónicas (PBX)' },
-      { id: 'pbx-mantenimiento', label: 'Mantenimiento de centrales telefónicas', note: 'Mensual' },
-      { id: 'voip-configuracion', label: 'Configuración de sistema VoIP' },
-      { id: 'cableado-estructurado', label: 'Cableado estructurado de voz', note: 'Por punto' },
-      { id: 'instalacion-telefono-fijo', label: 'Instalación de teléfono fijo' },
-      { id: 'reparacion-telefonia', label: 'Reparación de equipos de telefonía', note: 'Según diagnóstico' },
-      { id: 'integracion-sistemas', label: 'Integración de sistemas de comunicación', note: 'Proyecto personalizado' },
-      { id: 'configuracion-centralita', label: 'Configuración de centralita IP' },
-      { id: 'extension-telefonica', label: 'Instalación de extensión telefónica', note: 'Por extensión' },
+      { id: 'diagnostico-celular', label: 'Diagnóstico de celulares', note: 'Sin cargo' },
+      { id: 'cambio-bateria', label: 'Cambio de batería de celular' },
+      { id: 'cambio-pantalla', label: 'Cambio de pantalla / módulo', note: 'Según modelo' },
+      { id: 'pin-carga', label: 'Reparación de pin de carga' },
+      { id: 'configuracion-celular', label: 'Configuración inicial de celular' },
+      { id: 'transferencia-datos', label: 'Transferencia de datos y WhatsApp' },
+      { id: 'actualizacion-sistema', label: 'Actualización y restauración de sistema' },
+      { id: 'wifi-celular', label: 'Configuración de Wi-Fi y cuentas' },
+      { id: 'pbx-basico', label: 'Instalación básica de central telefónica', note: 'PyMES' },
+      { id: 'voip', label: 'Configuración de telefonía IP (VoIP)' },
     ],
-    title: 'Servicios de TELEFONÍA (Celular y Fija)',
   },
 };
 
