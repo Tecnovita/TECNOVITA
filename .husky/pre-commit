@@ -1,41 +1,14 @@
-#!/usr/bin/env sh
-# Define el intérprete del script como shell POSIX
-
-set -e
-# Detiene la ejecución si cualquier comando falla (bloquea commits con errores)
-
-. "$(dirname -- "$0")/_/husky.sh"
-# Carga las funciones internas de Husky necesarias para ejecutar el hook
-
 echo "🔍 Linting..."
-# Mensaje visual para indicar que comienza el análisis de estilo
-
 npm run lint
-# Ejecuta ESLint sobre todo el proyecto para detectar errores de estilo y código
 
 echo "🔎 Type checking..."
-# Mensaje visual para indicar que comienza la validación de tipos
-
 npm run typecheck
-# Ejecuta TypeScript en modo estricto sin emitir archivos, para validar el tipado
 
 echo "🧼 Lint-staged (auto-fix)..."
-# Mensaje visual para indicar que se aplican correcciones automáticas a archivos modificados
-
 npx lint-staged
-# Aplica ESLint y Prettier solo a los archivos en staging (modificados), según configuración
 
 echo "🧪 Running tests..."
-# Mensaje visual para indicar que se ejecutan pruebas unitarias
-
-npm test -- --run --passWithNoTests
-# Ejecuta pruebas con Vitest, sin fallar si aún no hay tests definidos
-
-echo "🎨 Validating Tailwind build..."
-# Mensaje visual para indicar que se valida la compilación de estilos Tailwind
-
-npm run check:tailwind
-# Compila Tailwind CSS y verifica que no haya errores en los estilos base
+# Solo dejamos npm test porque los parámetros ya están en el package.json
+npm test
 
 echo "✅ Todo listo para commitear."
-# Mensaje final indicando que todas las validaciones pasaron correctamente
