@@ -1,4 +1,6 @@
-// Importamos el tipo 'Config' desde 'tailwindcss'. 
+// C:\01-TECNOVITA\tecnovita1\tailwind.config.ts
+
+// Importamos el tipo 'Config' desde 'tailwindcss'.
 // Esto nos ayuda a definir correctamente la estructura de la configuración de Tailwind,
 // permitiendo autocompletado y verificación de tipos en nuestro IDE.
 import type { Config } from 'tailwindcss';

@@ -1,10 +1,19 @@
-/* === "C:\01-TECNOVITA\tecnovita1\src\app\globals.css" === */
+/* C:\01-TECNOVITA\tecnovita1\src\app\globals.css */
+/* Cambios (fix responsive héroes para móvil en todas las páginas):
+ * - Nueva .hero-responsive: Altura variable por breakpoint (250px mobile, 400px desktop).
+ * - .responsive-hero: Textos escalados (text-lg mobile, text-hero desktop).
+ * - .responsive-line: w-12 mobile, w-20 desktop para líneas azules.
+ * - Aplicar estas clases en héroes de home/servicios/contacto para homogeneidad.
+ * - Mantiene legibilidad: gap y py ajustados para stackeo vertical en mobile.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Forzamos el esquema oscuro corporativo como base única */
   --background: #050506;
   --foreground: #ffffff;
 
@@ -16,33 +25,143 @@
   --tecnovita-dark: #005fcc;
   --whatsapp: #25d366;
 
-  /* Variables de componentes en modo oscuro */
   --muted: #111113;
   --muted-foreground: #a1a1aa;
   --border: rgba(255, 255, 255, 0.1);
 
-  --font-sans: var(--font-geist-sans);
+  --font-sans:
+    'Inter', var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui,
+    sans-serif;
   --font-mono: var(--font-geist-mono);
 }
-
-/* Eliminamos la detección de modo claro del sistema para que la web sea SIEMPRE PRO */
 
 html,
 body {
   margin: 0;
   padding: 0;
-  /* El !important asegura que ninguna utilidad externa cambie el fondo */
   background-color: #050506 !important;
   color: #ffffff;
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  line-height: 1.5;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* === Animaciones Originales de Tecnovita === */
+@layer base {
+  .text-hero {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-5xl;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    word-spacing: 0.1em;
+    font-family: var(--font-sans);
+  }
+
+  /* Nueva: Responsive para héroes - escalado para móvil */
+  .responsive-hero {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-hero; /* Pequeño en mobile, full en desktop */
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    word-spacing: 0.1em;
+    font-family: var(--font-sans);
+  }
+
+  .text-section-title {
+    @apply text-2xl sm:text-2xl md:text-3xl;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    word-spacing: 0.1em;
+    font-family: var(--font-sans);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Nueva: Línea azul responsive */
+  .responsive-line {
+    @apply w-12 sm:w-16 md:w-20 h-1 bg-blue-600 rounded-full mx-auto;
+  }
+
+  /* Nueva: Contenedor hero responsive */
+  .hero-responsive {
+    @apply relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] w-full overflow-visible;
+  }
+
+  .text-subtitle {
+    @apply text-base sm:text-base md:text-lg;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-family: var(--font-sans);
+  }
+
+  .text-card-title {
+    @apply text-lg sm:text-lg md:text-xl;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    word-spacing: 0.05em;
+    font-family: var(--font-sans);
+  }
+
+  .text-label {
+    @apply text-xs;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+  }
+
+  .text-body {
+    @apply text-sm sm:text-sm;
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: var(--font-sans);
+  }
+
+  .text-small {
+    @apply text-xs;
+    font-weight: 400;
+    line-height: 1.4;
+    font-family: var(--font-sans);
+  }
+
+  .text-button {
+    @apply text-xs sm:text-sm;
+    font-weight: 700;
+    line-height: 1.4;
+    font-family: var(--font-sans);
+  }
+
+  .banner-text {
+    @apply italic;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    word-spacing: 0.15em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  }
+
+  .neon-title {
+    text-shadow:
+      0 0 8px rgba(0, 120, 255, 0.6),
+      0 0 16px rgba(0, 120, 255, 0.4),
+      0 0 24px rgba(0, 120, 255, 0.2);
+  }
+
+  .neon-glow-enhanced:hover {
+    text-shadow:
+      0 0 15px rgba(0, 120, 255, 0.9),
+      0 0 25px rgba(0, 120, 255, 0.7),
+      0 0 35px rgba(0, 120, 255, 0.5),
+      0 0 45px rgba(0, 120, 255, 0.3);
+    transition: text-shadow 0.3s ease-in-out;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -86,6 +205,22 @@ body {
   }
 }
 
+@keyframes neon-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 10px rgba(96, 165, 250, 0.5),
+      0 0 20px rgba(96, 165, 250, 0.3),
+      0 0 30px rgba(96, 165, 250, 0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 15px rgba(96, 165, 250, 0.8),
+      0 0 30px rgba(96, 165, 250, 0.5),
+      0 0 45px rgba(96, 165, 250, 0.3);
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
 }
@@ -98,14 +233,15 @@ body {
 .animate-pulse-gentle {
   animation: pulse-gentle 2s ease-in-out infinite;
 }
+.animate-neon-pulse {
+  animation: neon-pulse 3s ease-in-out infinite;
+}
 
-/* === Componentes Tecnovita Adaptados al Modo Oscuro === */
 @layer components {
   .btn-tecnovita {
     @apply bg-tecnovita hover:bg-tecnovita-dark text-white font-black uppercase tracking-widest py-3 px-8 rounded-xl transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(0,120,255,0.3)];
   }
 
-  /* REESCRITURA CLAVE: La tarjeta ahora es de cristal, no blanca */
   .card-premium {
     @apply bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-[2rem] p-8 transition-all duration-500 hover:bg-white/[0.07] hover:border-white/20;
   }
@@ -119,7 +255,6 @@ body {
   }
 }
 
-/* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -128,7 +263,6 @@ body {
   }
 }
 
-/* Estética de scrollbar para no romper el negro */
 ::-webkit-scrollbar {
   width: 8px;
 }

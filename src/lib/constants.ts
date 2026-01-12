@@ -1,34 +1,55 @@
 // src/lib/constants.ts
-import { FaLaptopCode, FaPhoneAlt, FaBolt } from 'react-icons/fa';
+import { FaLaptopCode, FaPhoneAlt, FaBolt, FaBroadcastTower } from 'react-icons/fa';
 
 export const COMPANY_NAME = 'TECNOVITA';
 
 export const SERVICES_DATA = [
   {
     bgGradient: 'from-blue-500 to-cyan-500',
-    description: 'Soporte técnico integral: reparación de hardware, optimización de sistemas operativos, limpieza de virus y configuración de redes locales para un rendimiento máximo.',
+    description:
+      'Soporte técnico integral: reparación de hardware, optimización de sistemas operativos, limpieza de virus y configuración de redes locales para un rendimiento máximo.',
     features: ['Reparación de PC y Notebooks', 'Instalación de Software', 'Seguridad Informática'],
     href: '/servicios/informatica',
     icon: FaLaptopCode,
     id: 'informatica',
-    title: 'Informática'
+    title: 'Informática',
   },
   {
     bgGradient: 'from-green-500 to-emerald-500',
-    description: 'Expertos en comunicación: reparación de dispositivos móviles, instalación de centrales telefónicas PBX y soluciones avanzadas de telefonía IP (VoIP) para empresas.',
+    description:
+      'Expertos en comunicación: reparación de dispositivos móviles, instalación de centrales telefónicas PBX y soluciones avanzadas de telefonía IP (VoIP) para empresas.',
     features: ['Servicio Técnico Celular', 'Centrales Telefónicas', 'Configuración VoIP'],
     href: '/servicios/telefonia',
     icon: FaPhoneAlt,
     id: 'telefonia',
-    title: 'Telefonía'
+    title: 'Telefonía',
   },
   {
     bgGradient: 'from-orange-500 to-red-500',
-    description: 'Instalaciones eléctricas seguras siguiendo normativas vigentes. Mantenimiento preventivo, tableros eléctricos, iluminación LED y soluciones de ahorro energético.',
-    features: ['Instalaciones Eléctricas', 'Mantenimiento de Tableros', 'Iluminación de Bajo Consumo'],
+    description:
+      'Instalaciones eléctricas seguras siguiendo normativas vigentes. Mantenimiento preventivo, tableros eléctricos, iluminación LED y soluciones de ahorro energético.',
+    features: [
+      'Instalaciones Eléctricas',
+      'Mantenimiento de Tableros',
+      'Iluminación de Bajo Consumo',
+    ],
     href: '/servicios/electricidad',
     icon: FaBolt,
     id: 'electricidad',
-    title: 'Electricidad'
-  }
+    title: 'Electricidad',
+  },
+  {
+    bgGradient: 'from-purple-600 to-indigo-600',
+    description:
+      'Soluciones en radiofrecuencia y altura: configuración de equipos HF/VHF, diseño de antenas dipolos y mantenimiento especializado de torres de telecomunicaciones.',
+    features: [
+      'Equipos HF, VHF y UHF',
+      'Antenas Dipolos y Direccionales',
+      'Mantenimiento de Torres',
+    ],
+    href: '/servicios/telecomunicaciones',
+    icon: FaBroadcastTower,
+    id: 'telecomunicaciones',
+    title: 'Telecomunicaciones',
+  },
 ];
