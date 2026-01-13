@@ -56,9 +56,11 @@ function ServiceCard({ service }: { service: Servicio }) {
 
       {/* Bloque de Contenido Inferior (Descripción + Lista) */}
       <div className="relative z-10 flex flex-col flex-grow p-4 px-6 mt-auto justify-end">
-        <p className="text-gray-300 mb-3 leading-relaxed text-xs font-medium group-hover:text-blue-300 transition-colors">
-          Solucionamos tu problema.
-        </p>
+        <div className="bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-lg px-3 py-2 mb-4">
+          <p className="text-white font-bold leading-relaxed text-sm group-hover:text-blue-200 transition-colors">
+            {service.description}
+          </p>
+        </div>
 
         <div className="space-y-1.5 mb-4">
           {service.items.slice(0, 3).map(item => (

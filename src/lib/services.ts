@@ -4,7 +4,7 @@ import type { IconType } from 'react-icons';
 
 export const COMPANY_NAME = 'TECNOVITA';
 
-export type ServiceId = 'informatica' | 'electricidad' | 'telefonia' | 'telecomunicaciones';
+export type ServiceId = 'informatica' | 'electricidad' | 'telefonia' | 'radiocomunicaciones';
 
 export type ServiceItem = {
   id: string;
@@ -19,6 +19,7 @@ export type Servicio = {
   items: ServiceItem[];
   title: string;
   imageUrl: string;
+  description: string; // ← NUEVO CAMPO
 };
 
 export const subServicesContent: Record<ServiceId, Servicio> = {
@@ -27,7 +28,7 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     icon: FaLaptopCode,
     id: 'informatica',
     title: 'INFORMÁTICA',
-    // Imagen más tech y moderna - Laptop con código
+    description: 'Reparación de computadoras e instalación de sistemas.',
     imageUrl: '/imagenes/servicios/informatica.avif',
     items: [
       {
@@ -45,34 +46,39 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
         label: 'Formateo y reinstalación completa',
         note: 'Con respaldo de datos',
       },
-      { id: 'instalacion-office', label: 'Instalación de Office (Word, Excel, etc.)' },
-      { id: 'eliminacion-virus', label: 'Eliminación de virus y malware' },
-      { id: 'optimizacion-equipos', label: 'Optimización de equipos lentos' },
       {
-        id: 'mantenimiento-preventivo',
-        label: 'Mantenimiento preventivo',
-        note: 'Limpieza interna y pasta térmica',
+        id: 'office-libreoffice',
+        label: 'Office y suites gratuitas (LibreOffice)',
       },
       {
-        id: 'recuperacion-datos',
-        label: 'Recuperación de archivos y datos',
-        note: 'Según complejidad',
+        id: 'eliminacion-virus',
+        label: 'Eliminación de virus y malware',
       },
       {
-        id: 'instalacion-impresoras',
-        label: 'Instalación y configuración de impresoras, sistema continuo, carga de tinta',
+        id: 'aceleracion-pc',
+        label: 'Aceleración de PC lento',
+        note: 'Para Windows 10/11.',
       },
       {
-        id: 'configuracion-wifi',
-        label: 'Instalación y configuración de redes Wi-Fi',
-        note: 'Hogar y comercio',
+        id: 'antivirus-vpn',
+        label: 'Antivirus y VPN básica',
       },
-      { id: 'backup-configuracion', label: 'Configuración de copias de seguridad (backup)' },
-      { id: 'soporte-remoto', label: 'Soporte técnico remoto', note: 'Por hora' },
       {
-        id: 'mantenimiento-empresas',
-        label: 'Mantenimiento informático para empresas',
-        note: 'Mensual',
+        id: 'configuracion-perifericos',
+        label: 'Configuración de periféricos (impresoras, etc.)',
+      },
+      {
+        id: 'backup-configuracion',
+        label: 'Configuración de copias de seguridad (backup)',
+      },
+      {
+        id: 'soporte-remoto',
+        label: 'Soporte técnico remoto',
+        note: 'Por hora',
+      },
+      {
+        id: 'soporte-pyme',
+        label: 'Soporte PYME (mantenimiento mensual)',
       },
     ],
   },
@@ -81,30 +87,48 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     icon: FaBolt,
     id: 'electricidad',
     title: 'ELECTRICIDAD',
-    // Imagen de instalaciones eléctricas profesionales
+    description: 'Instalaciones eléctricas y atención de urgencias.',
     imageUrl: '/imagenes/servicios/electricidad.avif',
     items: [
-      { id: 'diagnostico-electrico', label: 'Diagnóstico de instalaciones eléctricas' },
       {
-        id: 'urgencias-24hs',
+        id: 'urgencias-electricas',
         label: 'Atención de urgencias eléctricas',
-        note: 'Cortocircuitos y fallas',
+        note: 'Cortocircuitos y fallas. Incluye diagnóstico.',
       },
       {
         id: 'tablero-electrico',
         label: 'Instalación o recambio de tablero eléctrico',
-        note: 'Térmicas y disyuntores',
+        note: 'Térmicas y disyuntores. Cumple ENRE.',
       },
-      { id: 'cableado-nuevo', label: 'Cableado y recableado general' },
-      { id: 'luminarias-led', label: 'Instalación de luminarias LED y apliques' },
+      {
+        id: 'recableado-instalaciones',
+        label: 'Recableado de instalaciones',
+      },
+      {
+        id: 'luces-led-ahorro',
+        label: 'Luces LED y ahorro energía',
+      },
       {
         id: 'puesta-a-tierra',
         label: 'Instalación de puesta a tierra',
-        note: 'Jabalinas y medición',
+        note: 'Jabalinas y medición IRAM.',
       },
-      { id: 'sensores-fotocelulas', label: 'Instalación de sensores de movimiento y fotocélulas' },
-      { id: 'porteros-electricos', label: 'Instalación y reparación de porteros eléctricos' },
-      { id: 'certificaciones', label: 'Certificaciones y protocolos de medición' },
+      {
+        id: 'ups-generadores',
+        label: 'Instalación de UPS y generadores',
+      },
+      {
+        id: 'paneles-solares',
+        label: 'Paneles solares básicos',
+      },
+      {
+        id: 'domotica-simple',
+        label: 'Domótica simple (timers inteligentes)',
+      },
+      {
+        id: 'porteros-electricos',
+        label: 'Instalación y reparación de porteros eléctricos',
+      },
     ],
   },
   telefonia: {
@@ -112,35 +136,77 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     icon: FaPhoneAlt,
     id: 'telefonia',
     title: 'TELEFONÍA',
-    // Imagen de reparación de celulares moderna
+    description: 'Reparación de celulares y centrales telefónicas.',
     imageUrl: '/imagenes/servicios/telefonia.avif',
     items: [
-      { id: 'cambio-pantalla', label: 'Cambio de pantalla / módulo celular' },
-      { id: 'pin-carga', label: 'Reparación de pin de carga' },
-      { id: 'cambio-bateria', label: 'Cambio de baterías internas' },
-      { id: 'reparacion-placa', label: 'Reparación de placa base', note: 'Micro-soldadura' },
-      { id: 'limpieza-sulfato', label: 'Limpieza por humedad / sulfatación' },
-      { id: 'centrales-telefonicas', label: 'Instalación de centrales telefónicas' },
-      { id: 'voip', label: 'Configuración de telefonía IP (VoIP)' },
-      { id: 'cableado-telefonico', label: 'Mantenimiento de cableado telefónico interno' },
+      {
+        id: 'cambio-pantalla',
+        label: 'Cambio de pantalla / módulo celular',
+      },
+      {
+        id: 'pin-carga',
+        label: 'Reparación de pin de carga',
+      },
+      {
+        id: 'cambio-bateria',
+        label: 'Cambio de baterías internas',
+      },
+      {
+        id: 'limpieza-sulfato',
+        label: 'Limpieza por humedad / sulfatación',
+      },
+      {
+        id: 'cambio-camara',
+        label: 'Cambio de cámara o altavoz',
+      },
+      {
+        id: 'diagnostico-software',
+        label: 'Diagnóstico gratis de software (apps lentas)',
+      },
     ],
   },
-  telecomunicaciones: {
+  radiocomunicaciones: {
     bgGradient: 'from-purple-600/80 to-indigo-600/80',
     icon: FaBroadcastTower,
-    id: 'telecomunicaciones',
-    title: 'TELECOMUNICACIONES',
-    // Imagen de torres y antenas de telecomunicaciones
+    id: 'radiocomunicaciones',
+    title: 'RADIOCOMUNICACIONES',
+    description: 'Mantenimiento de torres e instalación de antenas.',
     imageUrl: '/imagenes/servicios/telecomunicaciones.avif',
     items: [
-      { id: 'mantenimiento-torres', label: 'Mantenimiento preventivo y correctivo de torres' },
-      { id: 'balizamiento', label: 'Instalación de sistemas de balizamiento y pararrayos' },
-      { id: 'ajuste-roe', label: 'Medición y ajuste de ROE', note: 'Optimización de transmisión' },
-      { id: 'radioenlaces', label: 'Configuración de radioenlaces punto a punto y multipunto' },
-      { id: 'antenas-vhf-uhf', label: 'Instalación de antenas VHF, UHF y FM' },
-      { id: 'cableado-estructurado', label: 'Instalación de cableado estructurado y racks' },
-      { id: 'cables-coaxiles', label: 'Armado de cables coaxiales, líneas de transmisión' },
-      { id: 'sistemas-irradiantes', label: 'Montaje de sistemas irradiantes complejos' },
+      {
+        id: 'mantenimiento-torres',
+        label: 'Mantenimiento de torres',
+        note: 'Cumple CNC.',
+      },
+      {
+        id: 'radioenlaces',
+        label: 'Configuración de radioenlaces',
+      },
+      {
+        id: 'antenas-vhf-uhf',
+        label: 'Instalación de antenas VHF, UHF y FM',
+      },
+      {
+        id: 'balizamiento-pararrayos',
+        label: 'Balizamiento y pararrayos',
+      },
+      {
+        id: 'sistemas-antenas',
+        label: 'Sistemas de antenas complejos',
+      },
+      {
+        id: 'walkie-talkies',
+        label: 'Instalación de walkie-talkies/radios portátiles',
+      },
+      {
+        id: 'integracion-cctv',
+        label: 'Integración con CCTV/redes',
+      },
+      {
+        id: 'cableado-estructurado',
+        label: 'Instalación de cableado estructurado y racks',
+        note: 'Incluye cables coaxiales.',
+      },
     ],
   },
 };
@@ -158,13 +224,13 @@ export function getServiceById(id: ServiceId): Servicio {
 //    - informatica.jpg
 //    - electricidad.jpg
 //    - telefonia.jpg
-//    - telecomunicaciones.jpg
+//    - radiocomunicaciones.jpg
 //
 // 3. Reemplaza las URLs en imageUrl por:
 //    imageUrl: '/images/services/informatica.jpg'
 //    imageUrl: '/images/services/electricidad.jpg'
 //    imageUrl: '/images/services/telefonia.jpg'
-//    imageUrl: '/images/services/telecomunicaciones.jpg'
+//    imageUrl: '/images/services/radiocomunicaciones.jpg'
 //
 // 4. Asegúrate de que las imágenes sean:
 //    - Formato: JPG o WebP
@@ -179,4 +245,4 @@ export function getServiceById(id: ServiceId): Servicio {
 //           ├── informatica.jpg
 //           ├── electricidad.jpg
 //           ├── telefonia.jpg
-//           └── telecomunicaciones.jpg
+//           └── radiocomunicaciones.jpg
