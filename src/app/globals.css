@@ -273,3 +273,129 @@ body {
   background: #27272a;
   border-radius: 10px;
 }
+/* ... al final de globals.css ... */
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scan-light {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+.animate-scan-light {
+  animation: scan-light 1.5s ease-in-out forwards;
+}
+/* === C:\01-TECNOVITA\tecnovita1\src\app\globals.css === */
+
+/* ... (mantener todo tu código anterior) ... */
+
+/* NUEVAS ANIMACIONES TECNOLÓGICAS RÁPIDAS */
+@keyframes electric-flash {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 0px rgba(59, 130, 246, 0));
+  }
+  50% {
+    filter: brightness(2) drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+  }
+  100% {
+    filter: brightness(1.2) drop-shadow(0 0 5px rgba(59, 130, 246, 0.4));
+  }
+}
+
+@keyframes fast-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(150%) skewX(-25deg);
+  }
+}
+
+.animate-electric {
+  animation: electric-flash 0.3s ease-out forwards;
+}
+
+.animate-fast-sweep {
+  animation: fast-sweep 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* === C:\01-TECNOVITA\tecnovita1\src\app\globals.css === */
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes internal-light {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+/* === C:\01-TECNOVITA\tecnovita1\src\app\globals.css === */
+
+@keyframes energy-flare {
+  0% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0px #3b82f6);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: brightness(2) drop-shadow(0 0 20px #3b82f6);
+  }
+  100% {
+    transform: scale(1.05);
+    filter: brightness(1.5) drop-shadow(0 0 10px #60a5fa);
+  }
+}
+
+@keyframes liquid-scan {
+  0% {
+    top: -100%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-flare {
+  animation: energy-flare 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-liquid {
+  animation: liquid-scan 0.6s linear infinite;
+}

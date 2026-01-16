@@ -1,3 +1,4 @@
+// C:\01-TECNOVITA\tecnovita1\src\components\Footer.tsx
 import Link from 'next/link';
 import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
@@ -66,9 +67,6 @@ export default function Footer() {
             <h2 className="relative text-3xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent tracking-widest">
               TECNOVITA
             </h2>
-            <p className="text-[10px] text-gray-500 mt-1 font-bold uppercase tracking-[0.3em]">
-              Servicios Técnicos Profesionales
-            </p>
           </div>
 
           {/* Contacto Corregido: Teléfono ahora abre WhatsApp */}

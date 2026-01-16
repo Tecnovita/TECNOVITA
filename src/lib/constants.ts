@@ -1,4 +1,4 @@
-// src/lib/constants.ts
+// C:\01-TECNOVITA\tecnovita1\src\lib\constants.ts
 import { FaLaptopCode, FaPhoneAlt, FaBolt, FaBroadcastTower } from 'react-icons/fa';
 
 export const COMPANY_NAME = 'TECNOVITA';

@@ -1,5 +1,6 @@
+// C:\01-TECNOVITA\tecnovita1\src\app\servicios\page.tsx
 import Link from 'next/link';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaMapMarkerAlt } from 'react-icons/fa';
 import { SERVICES_DATA, COMPANY_NAME } from '@/lib/constants';
 
 export const metadata = {
@@ -12,7 +13,7 @@ export const metadata = {
     'telecomunicaciones',
     COMPANY_NAME,
   ],
-  title: `Inicio | ${COMPANY_NAME}`,
+  title: `Servicios | ${COMPANY_NAME}`,
 };
 
 function ServiceCard({
@@ -69,9 +70,17 @@ function ServiceCard({
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center px-4 py-6 bg-black min-h-screen" id="site-main">
-      {/* Header */}
-      <header className="text-center max-w-6xl mb-6" role="banner">
+    <main className="relative flex flex-col items-center py-4 px-4 bg-[#050506] text-white">
+      {/* Fondo para consistencia */}
+      <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[100px]" />
+
+      {/* Header - Estandarizado */}
+      <header className="text-center max-w-6xl mb-6 relative z-10" role="banner">
+        <div className="inline-flex items-center gap-3 bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 rounded-2xl px-6 py-3 mb-4">
+          <FaMapMarkerAlt className="text-blue-400 text-xl" />
+          <span className="text-white font-bold text-lg tracking-wide">SANTA ROSA - TOAY</span>
+        </div>
+
         <h1 className="font-bold text-white mb-4 tracking-tight text-4xl sm:text-5xl md:text-6xl">
           Servicios{' '}
           <span className="text-tecnovita bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
@@ -79,7 +88,7 @@ export default function Home() {
           </span>
         </h1>
 
-        <p className="text-gray-400 text-lg sm:text-xl md:text-2xl font-light leading-relaxed">
+        <p className="text-gray-400 text-lg sm:text-xl md:text-2xl font-light leading-relaxed mb-6">
           <span className="font-extrabold text-blue-500">{COMPANY_NAME}:</span> especialistas en{' '}
           {SERVICES_DATA.map((s, i) => (
             <span key={s.id}>
@@ -90,8 +99,11 @@ export default function Home() {
         </p>
       </header>
 
-      {/* Cards: Actualizado de max-w-6xl a max-w-7xl y lg:grid-cols-4 */}
-      <section aria-label="Nuestros servicios técnicos" className="w-full max-w-7xl mb-6">
+      {/* Cards: 4 columnas */}
+      <section
+        aria-label="Nuestros servicios técnicos"
+        className="w-full max-w-7xl mb-8 relative z-10"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SERVICES_DATA.map(s => (
             <ServiceCard
@@ -108,7 +120,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section aria-label="Contacto" className="w-full max-w-4xl">
+      <section aria-label="Contacto" className="w-full max-w-4xl relative z-10">
         <div className="bg-gradient-to-r from-blue-900/40 to-black border border-blue-500/30 rounded-2xl p-6 sm:p-8 text-white text-center">
           <h2 className="text-xl sm:text-2xl font-bold mb-3">
             ¿Listo para solucionar tus problemas?
