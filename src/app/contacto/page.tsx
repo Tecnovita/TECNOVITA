@@ -1,5 +1,4 @@
 // === C:\01-TECNOVITA\tecnovita1\src\app\contacto\page.tsx ===
-
 'use client';
 
 import { useState } from 'react';
@@ -75,6 +74,18 @@ export default function ContactoPage() {
 
   return (
     <main className="relative flex flex-col items-center py-4 px-4 bg-[#050506] text-white">
+      {/* Fondo del planeta (copiado de la página de inicio) */}
+      <div className="absolute top-0 left-0 w-full h-[600px] opacity-70 pointer-events-none">
+        <Image
+          fill
+          priority
+          alt="Tecnovita Background"
+          className="object-cover saturate-150 brightness-110"
+          src="/imagenes/Inicio/fondo-planeta.avif"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050506]" />
+      </div>
+
       <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/8 rounded-full blur-[120px] pointer-events-none" />
 
