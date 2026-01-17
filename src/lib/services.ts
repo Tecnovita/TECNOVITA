@@ -33,52 +33,52 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     items: [
       {
         id: 'diagnostico-pc',
-        label: 'Diagnóstico técnico de PC o notebook',
-        note: 'Con presupuesto',
+        label: 'Diagnóstico técnico de PC, Notebook y All-in-One',
+        note: 'Presupuesto sin cargo en local.',
+      },
+      {
+        id: 'actualizacion-ssd', // MEJORA: El "Cambio a SSD" es el servicio más pedido en Argentina
+        label: 'Upgrade y actualización (Instalación de SSD y RAM)',
+        note: 'Multiplicá la velocidad de tu equipo.',
       },
       {
         id: 'instalacion-sistema',
-        label: 'Instalación y configuración de Windows',
-        note: 'Incluye drivers',
+        label: 'Instalación de Windows 10 / 11 Pro',
+        note: 'Optimización de sistema y drivers.',
       },
       {
-        id: 'formateo-reinstalacion',
-        label: 'Formateo y reinstalación completa',
-        note: 'Con respaldo de datos',
+        id: 'camaras-seguridad',
+        label: 'Cámaras de Seguridad IP y sistemas Wi-Fi',
+        note: 'Monitoreo en tiempo real desde el celular.',
       },
       {
-        id: 'office-libreoffice',
-        label: 'Office y suites gratuitas (LibreOffice)',
+        id: 'limpieza-fisica', // AMPLIACIÓN: Previene que se quemen las notebooks
+        label: 'Mantenimiento preventivo (Limpieza y cambio de pasta térmica)',
+        note: 'Evitá el sobrecalentamiento.',
+      },
+      {
+        id: 'redes-wifi', // AMPLIACIÓN: Clave para casas grandes o galpones
+        label: 'Ampliación de cobertura Wi-Fi y Redes Mesh',
+        note: 'Eliminá los puntos ciegos de tu casa.',
       },
       {
         id: 'eliminacion-virus',
-        label: 'Eliminación de virus y malware',
-      },
-      {
-        id: 'aceleracion-pc',
-        label: 'Aceleración de PC lento',
-        note: 'Para Windows 10/11.',
-      },
-      {
-        id: 'antivirus-vpn',
-        label: 'Antivirus y VPN básica',
+        label: 'Limpieza de Software, Virus y Adware',
       },
       {
         id: 'configuracion-perifericos',
-        label: 'Configuración de periféricos (impresoras, etc.)',
+        label: 'Instalación de periféricos e Impresoras',
+        note: 'Configuración de red y sistemas continuos.',
       },
       {
-        id: 'backup-configuracion',
-        label: 'Configuración de copias de seguridad (backup)',
-      },
-      {
-        id: 'soporte-remoto',
-        label: 'Soporte técnico remoto',
-        note: 'Por hora',
+        id: 'recuperacion-datos', // AMPLIACIÓN: Un servicio de alto valor
+        label: 'Recuperación de datos y Backup',
+        note: 'Discos rígidos, pendrives y memorias.',
       },
       {
         id: 'soporte-pyme',
-        label: 'Soporte PYME (mantenimiento mensual)',
+        label: 'Abonos de Mantenimiento para Empresas y Comercios',
+        note: 'Soporte técnico prioritario.',
       },
     ],
   },
@@ -91,43 +91,49 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     imageUrl: '/imagenes/servicios/electricidad.avif',
     items: [
       {
-        id: 'urgencias-electricas',
-        label: 'Atención de urgencias eléctricas',
-        note: 'Cortocircuitos y fallas. Incluye diagnóstico.',
+        id: 'urgencias-24hs',
+        label: 'Guardia de Urgencias Eléctricas',
+        note: 'Detección de fallas, fugas y cortocircuitos.',
       },
       {
-        id: 'tablero-electrico',
-        label: 'Instalación o recambio de tablero eléctrico',
-        note: 'Térmicas y disyuntores. Cumple ENRE.',
+        id: 'tablero-modernizacion',
+        label: 'Modernización de Tableros Eléctricos',
+        note: 'Térmicas y Disyuntores (Protección de personas y equipos).',
       },
       {
-        id: 'recableado-instalaciones',
-        label: 'Recableado de instalaciones',
+        id: 'certificaciones-ape', // CLAVE EN LA PAMPA: Para habilitaciones
+        label: 'Certificaciones y Protocolos de Puesta a Tierra',
+        note: 'Medición de jabalina con instrumental certificado.',
       },
       {
-        id: 'luces-led-ahorro',
-        label: 'Luces LED y ahorro energía',
+        id: 'recableado-normativo',
+        label: 'Recableado General y Especial (AA/CC)',
+        note: 'Líneas exclusivas para Aire Acondicionado y Hornos.',
       },
       {
-        id: 'puesta-a-tierra',
-        label: 'Instalación de puesta a tierra',
-        note: 'Jabalinas y medición IRAM.',
+        id: 'iluminacion-led',
+        label: 'Proyectos de Iluminación LED y Automatización',
+        note: 'Fotocélulas y sensores de movimiento.',
       },
       {
-        id: 'ups-generadores',
-        label: 'Instalación de UPS y generadores',
+        id: 'proteccion-tension', // MUY PEDIDO: Por los cortes y subas de tensión
+        label: 'Protectores de Alta/Baja Tensión integrales',
+        note: 'Protegé tus electrodomésticos de golpes de tensión.',
       },
       {
-        id: 'paneles-solares',
-        label: 'Paneles solares básicos',
+        id: 'energia-solar',
+        label: 'Sistemas Solares y Backup (UPS)',
+        note: 'Soluciones ante cortes de luz y ahorro energético.',
       },
       {
-        id: 'domotica-simple',
-        label: 'Domótica simple (timers inteligentes)',
+        id: 'porteros-seguridad',
+        label: 'Porteros Eléctricos y Visores IP',
+        note: 'Instalación y reparación de sistemas de acceso.',
       },
       {
-        id: 'porteros-electricos',
-        label: 'Instalación y reparación de porteros eléctricos',
+        id: 'bombas-pileta', // AMPLIACIÓN: Muy común en casas con patio en La Pampa
+        label: 'Automatización de Bombas y Riego',
+        note: 'Tableros estancos con protección para motores.',
       },
     ],
   },
@@ -174,38 +180,44 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     imageUrl: '/imagenes/servicios/telecomunicaciones.avif',
     items: [
       {
-        id: 'mantenimiento-torres',
-        label: 'Mantenimiento de torres',
-        note: 'Cumple CNC.',
+        id: 'radioenlaces-punto',
+        label: 'Radioenlaces Punto a Punto y Multi-punto',
+        note: 'Llevamos internet y datos a zonas rurales o campos.',
       },
       {
-        id: 'radioenlaces',
-        label: 'Configuración de radioenlaces',
+        id: 'mantenimiento-torres',
+        label: 'Mantenimiento de Torres y Mástiles',
+        note: 'Pintura, tensado de riendas y cumplimiento ENACOM.',
       },
       {
         id: 'antenas-vhf-uhf',
-        label: 'Instalación de antenas VHF, UHF y FM',
+        label: 'Sistemas de Radio VHF, UHF y Banda Ciudadana',
+        note: 'Instalación en bases fijas y unidades móviles.',
       },
       {
-        id: 'balizamiento-pararrayos',
-        label: 'Balizamiento y pararrayos',
+        id: 'proteccion-descargas',
+        label: 'Sistemas de Pararrayos y Puesta a Tierra',
+        note: 'Protección contra descargas atmosféricas en altura.',
       },
       {
-        id: 'sistemas-antenas',
-        label: 'Sistemas de antenas complejos',
+        id: 'balizamiento-seguridad',
+        label: 'Balizamiento Nocturno y Seguridad en Altura',
+        note: 'Instalación de balizas LED bajo normativa aeronáutica.',
       },
       {
-        id: 'walkie-talkies',
-        label: 'Instalación de walkie-talkies/radios portátiles',
-      },
-      {
-        id: 'integracion-cctv',
-        label: 'Integración con CCTV/redes',
+        id: 'programacion-equipos',
+        label: 'Programación de Handies y Radios Móviles',
+        note: 'Configuración de frecuencias y canales de emergencia.',
       },
       {
         id: 'cableado-estructurado',
-        label: 'Instalación de cableado estructurado y racks',
-        note: 'Incluye cables coaxiales.',
+        label: 'Cableado Coaxial, UTP y Racks de Datos',
+        note: 'Armado de nodos de comunicación profesionales.',
+      },
+      {
+        id: 'repetidoras',
+        label: 'Instalación de Repetidoras de Señal',
+        note: 'Ampliación de cobertura para comunicación de largo alcance.',
       },
     ],
   },

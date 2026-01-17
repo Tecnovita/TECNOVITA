@@ -1,4 +1,3 @@
-// C:\01-TECNOVITA\tecnovita1\src\app\layout.tsx
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -19,13 +18,14 @@ const geistMono = Geist_Mono({
   display: 'swap',
 });
 
+// Metadatos optimizados para SEO y Redes Sociales
 export const metadata: Metadata = {
   title: {
     default: 'TECNOVITA - Servicios Técnicos Profesionales',
     template: '%s | TECNOVITA',
   },
   description:
-    'Servicios técnicos especializados en informática, telefonía y electricidad. Soluciones confiables para hogares y empresas en Argentina. Reparación, mantenimiento y asesoramiento técnico.',
+    'Servicios técnicos especializados en informática, telefonía y electricidad en Santa Rosa - Toay. Soluciones confiables para hogares y empresas.',
   keywords: [
     'servicios técnicos',
     'informática',
@@ -33,17 +33,10 @@ export const metadata: Metadata = {
     'electricidad',
     'reparación',
     'Tecnovita',
-    'soporte técnico',
-    'mantenimiento',
+    'Santa Rosa',
+    'La Pampa',
   ],
   authors: [{ name: 'TECNOVITA' }],
-  creator: 'TECNOVITA',
-  publisher: 'TECNOVITA',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
   metadataBase: new URL('https://tecnovita.com.ar'),
   alternates: {
     canonical: '/',
@@ -53,35 +46,16 @@ export const metadata: Metadata = {
     locale: 'es_AR',
     url: 'https://tecnovita.com.ar',
     title: 'TECNOVITA - Servicios Técnicos Profesionales',
-    description:
-      'Servicios técnicos especializados en informática, telefonía y electricidad para hogares y empresas.',
+    description: 'Servicios técnicos especializados en informática, telefonía y electricidad.',
     siteName: 'TECNOVITA',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'TECNOVITA - Servicios Técnicos Profesionales',
+        alt: 'TECNOVITA',
       },
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'TECNOVITA - Servicios Técnicos Profesionales',
-    description: 'Servicios técnicos especializados en informática, telefonía y electricidad.',
-    images: ['/og-image.jpg'],
-    creator: '@tecnovita',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
 };
 
@@ -100,34 +74,34 @@ export default function RootLayout({
     <html className="scroll-smooth" lang="es">
       <body
         suppressHydrationWarning
-        // CORRECCIÓN CRÍTICA: Usar colores directos y estructura flexible
+        // Estructura Flexbox para asegurar que el Footer siempre esté al final
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-[#050506] text-white`}
       >
-        {/* Header */}
+        {/* Navegación Superior */}
         <Header />
 
-        {/* Contenido principal - FLEXIBLE para gestión de espacio */}
+        {/* El flex-1 permite que el main crezca y empuje al footer hacia abajo */}
         <main className="flex-1 w-full" id="main-content">
           {children}
         </main>
 
-        {/* Botón flotante de WhatsApp */}
+        {/* Botón flotante de WhatsApp global */}
         <div className="fixed bottom-6 right-6 z-50">
           <Link
             aria-label="Contactar por WhatsApp - TECNOVITA"
-            className="block transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 rounded-full"
+            className="block transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full"
             href="https://wa.me/542954294429"
             rel="noopener noreferrer"
             target="_blank"
           >
-            <div className="relative">
-              <FaWhatsapp className="text-5xl text-green-500 drop-shadow-lg" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse-gentle" />
+            <div className="relative group">
+              <FaWhatsapp className="text-5xl text-green-500 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)] transition-all group-hover:drop-shadow-[0_0_25px_rgba(34,197,94,0.8)]" />
+              <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-[#050506] animate-pulse" />
             </div>
           </Link>
         </div>
 
-        {/* Footer */}
+        {/* Pie de página */}
         <Footer />
       </body>
     </html>

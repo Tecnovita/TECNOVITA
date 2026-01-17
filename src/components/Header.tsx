@@ -83,14 +83,19 @@ export default function Header() {
         id="site-header"
       >
         <div className="w-full flex items-center justify-between h-16 md:h-20 px-4 md:px-8 lg:px-12">
-          {/* 1. LOGO (Izquierda) - MODIFICADO: Se eliminó la imagen de la letra T */}
+          {/* 1. LOGO (Izquierda) - MODIFICADO: Aplicando estilos del Footer */}
           <div className="flex items-center shrink-0">
             <Link className="inline-flex items-center group relative" href="/">
               <div className="relative flex items-center h-[56px] md:h-[72px]">
-                <div className="absolute inset-0 bg-blue-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg" />
-                <span className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent tracking-widest relative z-10 transition-colors group-hover:from-blue-300 group-hover:via-blue-400 group-hover:to-blue-500">
+                {/* Efecto Glow (Resplandor) */}
+                <div className="absolute inset-0 bg-[#0078ff]/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+
+                <span className="relative text-xl md:text-2xl lg:text-3xl font-extrabold tracking-[0.3em] uppercase transition-all duration-500 text-[#0078ff] drop-shadow-[0_2px_8px_rgba(0,120,255,0.4)]">
                   TECNOVITA
                 </span>
+
+                {/* Línea decorativa inferior */}
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[#0078ff] transition-all duration-700 group-hover:w-full opacity-60" />
               </div>
             </Link>
           </div>
@@ -204,7 +209,7 @@ export default function Header() {
         </div>
       </header>
 
-      <div className="h-16 md:h-20" />
+      <div className="h-12 md:h-16" />
     </>
   );
 }
