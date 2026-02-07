@@ -211,7 +211,7 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
       },
       {
         id: 'cableado-estructurado',
-        label: 'Cableado Coaxial, UTP y Racks de Datos',
+        label: 'Cableado Coaxil, UTP y Racks de Datos',
         note: 'Armado de nodos de comunicación profesionales.',
       },
       {

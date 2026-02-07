@@ -24,7 +24,7 @@ export default function ContactoPage() {
     'Informática',
     'Electricidad',
     'Telefonía',
-    'Telecomunicaciones',
+    'Radiocomunicaciones',
     'Consulta General',
   ];
 
