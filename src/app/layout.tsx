@@ -25,28 +25,15 @@ export const metadata: Metadata = {
     template: '%s | TECNOVITA',
   },
   description:
-    'Servicios técnicos especializados en informática, telefonía y electricidad en Santa Rosa - Toay. Soluciones confiables para hogares y empresas.',
-  keywords: [
-    'servicios técnicos',
-    'informática',
-    'telefonía',
-    'electricidad',
-    'reparación',
-    'Tecnovita',
-    'Santa Rosa',
-    'La Pampa',
-  ],
+    'Servicios técnicos en Santa Rosa y Toay: informática, electricidad, telefonía y radiocomunicaciones para hogares y empresas. Presupuesto sin cargo.',
   authors: [{ name: 'TECNOVITA' }],
   metadataBase: new URL('https://tecnovita.com.ar'),
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     type: 'website',
     locale: 'es_AR',
     url: 'https://tecnovita.com.ar',
     title: 'TECNOVITA - Servicios Técnicos Profesionales',
-    description: 'Servicios técnicos especializados en informática, telefonía y electricidad.',
+    description: 'Informática, electricidad, telefonía y radiocomunicaciones en Santa Rosa y Toay.',
     siteName: 'TECNOVITA',
     images: [
       {
@@ -57,6 +44,45 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: { card: 'summary_large_image', images: ['/og-image.jpg'] },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'TECNOVITA',
+  url: 'https://tecnovita.com.ar',
+  image: 'https://tecnovita.com.ar/og-image.jpg',
+  telephone: '+542954294429',
+  email: 'info@tecnovita.com.ar',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Catriló 1648',
+    addressLocality: 'Santa Rosa',
+    addressRegion: 'La Pampa',
+    addressCountry: 'AR',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: -36.6190731, longitude: -64.2882855 },
+  areaServed: ['Santa Rosa', 'Toay', 'La Pampa'],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '09:00',
+      closes: '13:00',
+    },
+  ],
+  sameAs: [
+    'https://www.instagram.com/tecnovita.com.ar',
+    'https://www.facebook.com/profile.php?id=61578156026887',
+    'https://www.tiktok.com/@tecnovita.com.ar',
+  ],
 };
 
 export const viewport: Viewport = {
@@ -77,6 +103,10 @@ export default function RootLayout({
         // Estructura Flexbox para asegurar que el Footer siempre esté al final
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-[#050506] text-white`}
       >
+        <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          type="application/ld+json"
+        />
         {/* Navegación Superior */}
         <Header />
 

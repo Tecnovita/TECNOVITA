@@ -6,6 +6,10 @@ import type { NextConfig } from 'next';
  * Incluye soporte para imágenes externas (Unsplash) y optimizaciones de Turbopack.
  */
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  async redirects() {
+    return [{ source: '/servicios', destination: '/', permanent: true }];
+  },
   /* --- CONFIGURACIÓN DE IMÁGENES --- */
   // Requerido para que el componente <Image /> pueda cargar fotos de dominios externos.
   images: {

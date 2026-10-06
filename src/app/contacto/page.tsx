@@ -15,6 +15,7 @@ export default function ContactoPage() {
     telefono: '',
     servicioInteresado: '',
     mensaje: '',
+    web: '',
   });
 
   const [status, setStatus] = useState<'idle' | 'success' | 'error' | 'submitting'>('idle');
@@ -67,21 +68,30 @@ export default function ContactoPage() {
         return;
       }
       setStatus('success');
-      setFormData({ nombre: '', email: '', telefono: '', servicioInteresado: '', mensaje: '' });
+      setFormData({
+        nombre: '',
+        email: '',
+        telefono: '',
+        servicioInteresado: '',
+        mensaje: '',
+        web: '',
+      });
     } catch {
       setStatus('error');
     }
   };
 
   return (
-    <main className="relative flex flex-col items-center py-4 px-4 bg-[#050506] text-white overflow-x-hidden">
+    <div className="relative flex flex-col items-center py-4 px-4 bg-[#050506] text-white overflow-x-hidden">
       {/* Fondo del planeta */}
       <div className="absolute top-0 left-0 w-full h-[600px] opacity-70 pointer-events-none">
         <Image
           fill
           priority
-          alt="Tecnovita Background"
+          alt=""
           className="object-cover saturate-150 brightness-110"
+          quality={60}
+          sizes="100vw"
           src="/imagenes/Inicio/fondo-planeta.avif"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050506]" />
@@ -105,6 +115,18 @@ export default function ContactoPage() {
               </h2>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <input
+                  aria-hidden="true"
+                  autoComplete="off"
+                  className="hidden"
+                  name="web"
+                  tabIndex={-1}
+                  type="text"
+                  value={formData.web}
+                  onChange={handleChange}
+                />
+                <input
+                  aria-label="Nombre completo"
+                  autoComplete="name"
                   className={`w-full px-5 py-3 rounded-2xl border bg-white/[0.03] text-sm text-white placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/50 outline-none transition-all ${errors.nombre ? 'border-red-500' : 'border-white/10'}`}
                   name="nombre"
                   placeholder="Nombre completo"
@@ -113,6 +135,8 @@ export default function ContactoPage() {
                   onChange={handleChange}
                 />
                 <input
+                  aria-label="Correo electrónico"
+                  autoComplete="email"
                   className={`w-full px-5 py-3 rounded-2xl border bg-white/[0.03] text-sm text-white placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/50 outline-none transition-all ${errors.email ? 'border-red-500' : 'border-white/10'}`}
                   name="email"
                   placeholder="Correo electrónico"
@@ -122,6 +146,8 @@ export default function ContactoPage() {
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <input
+                    aria-label="Teléfono"
+                    autoComplete="tel"
                     className="w-full px-5 py-3 rounded-2xl border bg-white/[0.03] text-sm text-white border-white/10 outline-none focus:ring-2 focus:ring-blue-500/50"
                     name="telefono"
                     placeholder="Teléfono"
@@ -130,6 +156,7 @@ export default function ContactoPage() {
                     onChange={handleChange}
                   />
                   <select
+                    aria-label="Servicio de interés"
                     className="w-full px-5 py-3 rounded-2xl border bg-white/[0.03] text-sm text-white border-white/10 outline-none focus:ring-2 focus:ring-blue-500/50 appearance-none"
                     name="servicioInteresado"
                     value={formData.servicioInteresado}
@@ -146,6 +173,7 @@ export default function ContactoPage() {
                   </select>
                 </div>
                 <textarea
+                  aria-label="Consulta"
                   className={`w-full px-5 py-3 rounded-2xl border bg-white/[0.03] text-sm text-white placeholder:text-gray-500 h-32 outline-none focus:ring-2 focus:ring-blue-500/50 resize-none transition-all ${errors.mensaje ? 'border-red-500' : 'border-white/10'}`}
                   name="mensaje"
                   placeholder="Escribí tu consulta aquí..."
@@ -159,6 +187,22 @@ export default function ContactoPage() {
                 >
                   {status === 'submitting' ? 'Enviando...' : 'Enviar Consulta'}
                 </button>
+                {Object.values(errors)
+                  .filter(Boolean)
+                  .map(m => (
+                    <p key={m} className="text-red-400 text-xs text-center" role="alert">
+                      {m}
+                    </p>
+                  ))}
+                {status === 'error' && !Object.values(errors).some(Boolean) && (
+                  <p className="text-red-400 text-xs text-center" role="alert">
+                    No pudimos enviar tu mensaje. Probá de nuevo o escribinos por WhatsApp.
+                  </p>
+                )}
+                <p className="text-[10px] text-gray-500 text-center">
+                  Usamos tus datos solo para responder tu consulta. Urgencias: escribinos por
+                  WhatsApp.
+                </p>
                 {status === 'success' && (
                   <p className="text-green-400 text-xs text-center font-bold uppercase mt-4 animate-pulse">
                     ¡Tu mensaje fue enviado con éxito!
@@ -197,7 +241,7 @@ export default function ContactoPage() {
                   {/* DIRECCIÓN CLICABLE */}
                   <a
                     className="flex items-center p-4 bg-white/[0.03] rounded-2xl border border-white/5 hover:border-blue-500/40 transition-all group"
-                    href="https://www.google.com/maps/search/?api=1&query=Catrilo+1648+Santa+Rosa+La+Pampa"
+                    href="https://www.google.com/maps/search/?api=1&query=Catril%C3%B3+1648+Santa+Rosa+La+Pampa"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
@@ -297,6 +341,6 @@ export default function ContactoPage() {
           </div>
         </motion.div>
       </div>
-    </main>
+    </div>
   );
 }

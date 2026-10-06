@@ -147,7 +147,7 @@ export default function Header() {
                         href={`/servicios/${s.id}`}
                       >
                         <s.icon className="text-lg" />
-                        {s.id.charAt(0).toUpperCase() + s.id.slice(1)}
+                        {s.title.charAt(0) + s.title.slice(1).toLowerCase()}
                       </Link>
                     ))}
                   </div>
@@ -194,7 +194,7 @@ export default function Header() {
               >
                 <div className="flex items-center gap-3">
                   <s.icon />
-                  {s.id.charAt(0).toUpperCase() + s.id.slice(1)}
+                  {s.title.charAt(0) + s.title.slice(1).toLowerCase()}
                 </div>
               </Link>
             ))}

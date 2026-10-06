@@ -15,12 +15,27 @@ interface PageProps {
   params: Promise<{ serviceId: string }>;
 }
 
+export function generateStaticParams() {
+  return Object.keys(subServicesContent).map(serviceId => ({ serviceId }));
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { serviceId } = await params;
   const id = serviceId.toLowerCase() as ServiceId;
   const serviceDetail = subServicesContent[id];
   if (!serviceDetail) return { title: 'Servicio no encontrado' };
-  return { title: `${serviceDetail.title} | ${COMPANY_NAME}` };
+  const nombre = serviceDetail.title.charAt(0) + serviceDetail.title.slice(1).toLowerCase();
+  const description = `${serviceDetail.description} ${serviceDetail.items
+    .slice(0, 3)
+    .map(i => i.label)
+    .join(', ')}. Santa Rosa y Toay, La Pampa.`;
+  const url = `/servicios/${id}`;
+  return {
+    title: `${nombre} en Santa Rosa y Toay`,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title: `${nombre} en Santa Rosa y Toay | ${COMPANY_NAME}`, description, url },
+  };
 }
 
 export default async function ServicePage({ params }: PageProps) {
@@ -38,14 +53,16 @@ export default async function ServicePage({ params }: PageProps) {
   }));
 
   return (
-    <main className="relative flex flex-col items-center py-4 px-4 bg-[#050506] text-white overflow-x-hidden">
+    <div className="relative flex flex-col items-center py-4 px-4 bg-[#050506] text-white overflow-x-hidden">
       {/* Fondo de Servicio Unificado - OPTIMIZADO para mejor visibilidad */}
       <div className="absolute top-0 left-0 w-full h-[650px] opacity-50 pointer-events-none">
         <Image
           fill
           priority
-          alt={serviceDetail.title}
+          alt=""
           className="object-cover"
+          quality={60}
+          sizes="100vw"
           src={serviceDetail.imageUrl}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050506]/40 via-[#050506]/70 to-[#050506]" />
@@ -93,6 +110,6 @@ export default async function ServicePage({ params }: PageProps) {
           </footer>
         </MotionDiv>
       </section>
-    </main>
+    </div>
   );
 }

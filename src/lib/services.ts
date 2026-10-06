@@ -49,7 +49,7 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
       {
         id: 'camaras-seguridad',
         label: 'Cámaras de Seguridad IP y sistemas Wi-Fi',
-        note: 'Monitoreo en tiempo real desde el celular.',
+        note: 'Monitoreo en tiempo real desde cualquier dispositivo.',
       },
       {
         id: 'limpieza-fisica', // AMPLIACIÓN: Previene que se quemen las notebooks
@@ -92,8 +92,8 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     items: [
       {
         id: 'urgencias-24hs',
-        label: 'Guardia de Urgencias Eléctricas',
-        note: 'Detección de fallas, fugas y cortocircuitos.',
+        label: 'Atención de Urgencias Eléctricas',
+        note: 'Detección de fallas, fugas y cortocircuitos. Consultá disponibilidad por WhatsApp.',
       },
       {
         id: 'tablero-modernizacion',
@@ -142,32 +142,38 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
     icon: FaPhoneAlt,
     id: 'telefonia',
     title: 'TELEFONÍA',
-    description: 'Reparación de celulares y centrales telefónicas.',
+    description: 'Centrales telefónicas y telefonía IP.',
     imageUrl: '/imagenes/servicios/telefonia.avif',
     items: [
       {
-        id: 'cambio-pantalla',
-        label: 'Cambio de pantalla / módulo celular',
+        id: 'centrales-telefonicas',
+        label: 'Instalación de Centrales Telefónicas',
+        note: 'Para hogares, comercios y empresas.',
       },
       {
-        id: 'pin-carga',
-        label: 'Reparación de pin de carga',
+        id: 'telefonia-ip',
+        label: 'Telefonía IP (VoIP)',
+        note: 'Internos IP, troncales SIP y softphones.',
       },
       {
-        id: 'cambio-bateria',
-        label: 'Cambio de baterías internas',
+        id: 'programacion-centrales',
+        label: 'Programación y configuración de centrales',
+        note: 'Internos, derivaciones, horarios y menú de atención.',
       },
       {
-        id: 'limpieza-sulfato',
-        label: 'Limpieza por humedad / sulfatación',
+        id: 'mantenimiento-centrales',
+        label: 'Mantenimiento y reparación de centrales',
+        note: 'Diagnóstico de fallas y reemplazo de componentes.',
       },
       {
-        id: 'cambio-camara',
-        label: 'Cambio de cámara o altavoz',
+        id: 'cableado-telefonico',
+        label: 'Cableado de internos y red telefónica',
+        note: 'Tendido, canalización y conexionado profesional.',
       },
       {
-        id: 'diagnostico-software',
-        label: 'Diagnóstico gratis de software (apps lentas)',
+        id: 'migracion-ip',
+        label: 'Migración de central analógica a IP',
+        note: 'Ampliación de internos y modernización del sistema.',
       },
     ],
   },
@@ -182,12 +188,17 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
       {
         id: 'radioenlaces-punto',
         label: 'Radioenlaces Punto a Punto y Multi-punto',
-        note: 'Llevamos internet y datos a zonas rurales o campos.',
+        note: 'Instalación en zonas rurales y campos.',
+      },
+      {
+        id: 'starlink',
+        label: 'Instalación de Starlink',
+        note: 'Montaje, orientación y configuración del equipo en campos y zonas sin cobertura.',
       },
       {
         id: 'mantenimiento-torres',
         label: 'Mantenimiento de Torres y Mástiles',
-        note: 'Pintura, tensado de riendas y cumplimiento ENACOM.',
+        note: 'Pintura, tensado de riendas y asesoramiento sobre normativa ENACOM.',
       },
       {
         id: 'antenas-vhf-uhf',
@@ -202,7 +213,7 @@ export const subServicesContent: Record<ServiceId, Servicio> = {
       {
         id: 'balizamiento-seguridad',
         label: 'Balizamiento Nocturno y Seguridad en Altura',
-        note: 'Instalación de balizas LED bajo normativa aeronáutica.',
+        note: 'Instalación de balizas LED según normativa aeronáutica vigente.',
       },
       {
         id: 'programacion-equipos',

@@ -6,7 +6,36 @@ import HeroSection from '@/components/HeroSection';
 import { subServicesContent, COMPANY_NAME, type Servicio } from '@/lib/services';
 
 export const metadata: Metadata = {
-  title: `Inicio | ${COMPANY_NAME}`,
+  title: { absolute: `${COMPANY_NAME} | Servicios técnicos en Santa Rosa y Toay` },
+  alternates: { canonical: '/' },
+};
+
+const PASOS = [
+  ['1. Contanos tu problema', 'Por el formulario o por WhatsApp.'],
+  ['2. Presupuesto sin cargo', 'Te respondemos con una propuesta a medida.'],
+  ['3. Resolvemos', 'Hacemos el trabajo y te dejamos todo funcionando.'],
+];
+
+const FAQ = [
+  ['¿El presupuesto tiene costo?', 'No, los presupuestos son sin cargo.'],
+  [
+    '¿Cuáles son los horarios de atención?',
+    'Lunes a viernes de 9 a 18 y sábados de 9 a 13. Para urgencias escribinos por WhatsApp.',
+  ],
+  [
+    '¿Trabajan en zonas rurales?',
+    'Sí, atendemos zonas rurales y campos. Instalamos radioenlaces y Starlink para que tengas conectividad en tu establecimiento. Consultanos por tu zona.',
+  ],
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map(([q, a]) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
 };
 
 function ServiceCard({ service }: { service: Servicio }) {
@@ -19,8 +48,9 @@ function ServiceCard({ service }: { service: Servicio }) {
       <div className="absolute inset-0 z-0">
         <Image
           fill
-          alt={service.title}
+          alt=""
           className="object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
           src={service.imageUrl}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-[#0a0a0c]/40 to-transparent" />
@@ -50,13 +80,15 @@ export default function Home() {
   const servicesList = Object.values(subServicesContent);
 
   return (
-    <main className="relative flex flex-col items-center py-8 px-4 bg-[#050506] text-white">
+    <div className="relative flex flex-col items-center py-8 px-4 bg-[#050506] text-white">
       <div className="absolute top-0 left-0 w-full h-[600px] opacity-70 pointer-events-none">
         <Image
           fill
           priority
-          alt="Fondo"
+          alt=""
           className="object-cover"
+          quality={60}
+          sizes="100vw"
           src="/imagenes/Inicio/fondo-planeta.avif"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050506]" />
@@ -89,6 +121,38 @@ export default function Home() {
           </Link>
         </div>
       </section>
-    </main>
+
+      <section className="w-full max-w-4xl relative z-10 mb-12">
+        <h2 className="text-center text-xs font-black uppercase tracking-[0.3em] text-blue-400 mb-6">
+          Cómo trabajamos
+        </h2>
+        <ol className="grid gap-4 md:grid-cols-3">
+          {PASOS.map(([t, d]) => (
+            <li key={t} className="rounded-2xl border border-white/5 bg-[#0a0a0c] p-5">
+              <p className="font-bold">{t}</p>
+              <p className="mt-1 text-sm text-gray-400">{d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="w-full max-w-4xl relative z-10 mb-12">
+        <h2 className="text-center text-xs font-black uppercase tracking-[0.3em] text-blue-400 mb-6">
+          Preguntas frecuentes
+        </h2>
+        <div className="space-y-3">
+          {FAQ.map(([q, a]) => (
+            <details key={q} className="rounded-2xl border border-white/5 bg-[#0a0a0c] p-4">
+              <summary className="cursor-pointer font-bold">{q}</summary>
+              <p className="mt-2 text-sm text-gray-400">{a}</p>
+            </details>
+          ))}
+        </div>
+        <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+          type="application/ld+json"
+        />
+      </section>
+    </div>
   );
 }

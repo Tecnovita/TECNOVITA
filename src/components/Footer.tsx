@@ -1,18 +1,19 @@
 // C:\01-TECNOVITA\tecnovita1\src\components\Footer.tsx
 import Link from 'next/link';
+import { subServicesContent } from '@/lib/services';
 import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
 
 /**
  * CONFIGURACIÓN DE DATOS
  */
 const CONTACT_DATA = {
-  phone: '2954 29-4429',
+  phone: '+54 9 2954 294429',
   whatsappUrl: 'https://wa.me/542954294429',
   email: 'info@tecnovita.com.ar',
-  address: 'Catrilo 1648, Santa Rosa, LP',
+  address: 'Catriló 1648, Santa Rosa, La Pampa',
   // Este enlace es universal y nunca caduca:
   mapsUrl:
-    'https://www.google.com/maps/search/?api=1&query=Catrilo+1648,+Santa+Rosa,+La+Pampa,+Argentina',
+    'https://www.google.com/maps/search/?api=1&query=Catril%C3%B3+1648,+Santa+Rosa,+La+Pampa,+Argentina',
 };
 
 export default function Footer() {
@@ -82,10 +83,19 @@ export default function Footer() {
 
           {/* Navegación y Copyright - Gap reducido de 3 a 1 */}
           <div className="flex flex-col items-center gap-1">
-            <nav className="flex gap-6 text-[9px] font-bold uppercase tracking-[0.2em]">
+            <nav className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-[9px] font-bold uppercase tracking-[0.2em]">
               <Link className="text-gray-500 hover:text-blue-400 transition-colors" href="/">
                 Inicio
               </Link>
+              {Object.values(subServicesContent).map(s => (
+                <Link
+                  key={s.id}
+                  className="text-gray-500 hover:text-blue-400 transition-colors"
+                  href={`/servicios/${s.id}`}
+                >
+                  {s.title.charAt(0) + s.title.slice(1).toLowerCase()}
+                </Link>
+              ))}
               <Link
                 className="text-gray-500 hover:text-blue-400 transition-colors"
                 href="/contacto"
